@@ -1,5 +1,5 @@
 Ao rodar a API, certifique-se de mudar de diretório para back-july (cd back-july) e instalar o node novamente
-para baixar os módulos necessários.
+para baixar os módulos necessários (npm install).
 O arquivo .env (não upado por motivos de segurança) tem os seguintes campos:
 DB_USER=root
 DB_HOST=127.0.0.1
