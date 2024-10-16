@@ -11,5 +11,8 @@ DB_PASSWORD=
 PORT = 3001
 
 Não esqueça de criá-lo na raíz do diretório back-july.
+Depois disso, use o comando db:seed:all para popular o banco de dados e os dados aparecerem nas rotas criadas
+[/usuarios, /produtos, /pedidos]
+
 Feito estas instruções, o app estará pronto para rodar usando o comando npm start.
 
