@@ -1,0 +1,1 @@
+Ao rodar a API, certifique-se de mudar de diretório para back-july (cd back-july) e assim rodar a api com node index.js.
