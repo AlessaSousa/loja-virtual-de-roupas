@@ -5,6 +5,7 @@ import Login from '../src/components/HomePage/Login';
 import Register from '../src/components/HomePage/Register';
 import Header from './components/HomePage/Header';
 import HomePage from './components/HomePage/HomePage';
+import Items from './components/HomePage/Items';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,7 +26,7 @@ const PathRouter = () => {
           <Route path="/header" element={<Header />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        
+          <Route path='/items' element={<Items/>}/>
       </Routes>
     </BrowserRouter>
   );
