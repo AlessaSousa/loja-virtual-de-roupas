@@ -9,6 +9,8 @@ const PORT = process.env.PORT
 const db = require('./models')
 // rotas
 
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
