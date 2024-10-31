@@ -1,10 +1,12 @@
 import Header from "./Header"
-import Items from "./Items"
+import Itens from "./Itens"
+import OnTrend from "./OnTrend"
 function HomePage(){
     return(
         <>
             <Header></Header>
-            <Items></Items>
+            <Itens></Itens>
+            <OnTrend></OnTrend>
         </>
     )
 }

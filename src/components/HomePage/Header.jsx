@@ -3,7 +3,7 @@ import logoTrendix from '../../assets/svg/logo-trendix.svg'
 // import { SplitButton } from 'primereact/splitbutton';
 // import { Toast } from 'primereact/toast';
 // import React, { useRef, useState } from 'react';
-
+import imageHomePage from '../../assets/svg/imageHomePage.svg'
 
 function HomePage() {
     return (
@@ -92,18 +92,32 @@ function HomePage() {
                     color:'white'
                 }} to="/register"> Cadastro</Link>
                    </button>
+                   <button style={{
+                    background:'#86D293',
+                    border:'#86D293',
+                    color:'white',
+                    borderRadius:'8px',
+                    padding:'5px 20px'
+                }}>
+                <Link style={{
+                    textDecoration:'none',
+                    color:'white'
+                }} to="/login"> Login</Link>
+                   </button>
             </div>
 
         </div>
 
-        <div style={{
+        {/* <div style={{
             background:'#86D293',
             width:'100%',
             height:'450px',
             padding:'60px'
-        }}>
+        }}> */}
+        <div>
+        <img src={imageHomePage} style={{width: '100%'}}></img>
 
-        <div style={{
+        {/* <div style={{
             fontSize:'40px',
             fontWeight:'600'
         }}>
@@ -130,8 +144,10 @@ function HomePage() {
                     color:'black'
                 }} to="/catalago"> Catálago</Link>
                    </button>
+                   
+</div> */}
 </div>
-        </div>
+        {/* </div> */}
 
         </>
   
