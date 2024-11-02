@@ -4,6 +4,7 @@ import clienteAnanya from '../../assets/svg/cliente-ananya.svg'
 import clienteSanjana from '../../assets/svg/cliente-sanjana.svg'
 import clienteVikram from '../../assets/svg/cliente-vikram.svg'
 import Slider from 'react-slick'
+import estrelinha from '../../assets/svg/estrelinha.svg'
 
 function Reviews() {
 
@@ -37,6 +38,23 @@ function Reviews() {
 
         }
     ]
+    const imageEstrelinha = [
+        {
+            img: estrelinha,
+        },
+        {
+            img: estrelinha,
+        },
+        {
+            img: estrelinha,
+        },
+        {
+            img: estrelinha,
+        },
+        {
+            img: estrelinha,
+        },
+    ]
 
     const slideConfig = {
         centerMode: false,
@@ -67,7 +85,12 @@ function Reviews() {
                                     <p className='text-name'>{image.name}</p>
                                     <p className='text-occupation'>{image.occupation}</p>
                                     <p className='text-description'>{image.description}</p>
-
+                                    <div className='estrelinha'>
+                                        {imageEstrelinha.map((item) =>             
+                                        <img src={item.img}></img>
+                                        )}
+                            
+                                    </div>
                                 </div>
 
                             </div>

@@ -13,7 +13,7 @@
     background: white;
     border-radius: 30px;
     padding: 70px 40px 40px ;
-    transform: scale(0.85);
+    transform: scale(0.88);
     height: 380px;
     margin: 60px 0;
 }
@@ -34,6 +34,7 @@
 }
 .box-customer .text-description {
     font-size: 15px;
+    height: 170px;
 }
 
 .container-review .title1{
@@ -46,4 +47,11 @@
     color: black;
     margin: 0;
     font-weight: 600;
+}
+.estrelinha {
+    display: flex;
+    justify-content: center;
+}
+.estrelinha img {
+    padding: 0 5px;
 }

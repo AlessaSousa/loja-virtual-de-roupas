@@ -1,4 +1,5 @@
 import Donation from "../donation/Donation"
+import Footer from "../footer/Footer"
 import Header from "../header/Header"
 import Itens from "../itens/Itens"
 import OnTrend from "../onTrend/OnTrend"
@@ -11,6 +12,7 @@ function HomePage(){
             <OnTrend></OnTrend>
             <Donation></Donation>
             <Reviews></Reviews>
+            <Footer></Footer>
         </>
     )
 }

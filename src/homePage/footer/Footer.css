@@ -1,0 +1,20 @@
+.footer {
+    width: 100%;
+    background:#4b9e71 ;
+    padding: 20px 120px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+.text-direitos {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
