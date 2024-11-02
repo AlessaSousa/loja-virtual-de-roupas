@@ -1,6 +1,6 @@
 .footer {
     width: 100%;
-    background:#4b9e71 ;
+    background:#A1D6B2 ;
     padding: 20px 120px;
 }
 
@@ -10,11 +10,11 @@
     align-items: center;
     font-size: 18px;
     font-weight: 600;
-    color: white;
+    color: black;
 }
 .text-direitos {
     text-align: center;
     font-size: 20px;
-    color: white;
+    color: black;
     font-weight: 600;
 }
