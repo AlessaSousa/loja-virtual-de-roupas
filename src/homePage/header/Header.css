@@ -1,0 +1,61 @@
+.header {
+    padding: 20px 40px;
+    width: 100%;
+    height: 130px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    align-self: center;
+    gap: 35px;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: black;
+}
+
+.search-bar input {
+    border-radius: 20px;
+    padding: 7px;
+    font-size: 13px;
+    border: 1px solid gray;
+    width: 15vw;
+}
+
+.icons-and-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.register-button,
+.login-button {
+    background: #86D293;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+}
+
+.register-button a,
+.login-button a {
+    text-decoration: none;
+    color: white;
+}
+
+.image-section img {
+    width: 100%;
+}

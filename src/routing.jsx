@@ -1,14 +1,9 @@
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from '../src/components/HomePage/Login';
-import Register from '../src/components/HomePage/Register';
-import Header from './components/HomePage/Header';
-import HomePage from './components/HomePage/HomePage';
-import Itens from './components/HomePage/Itens';
-import OnTrend from './components/HomePage/OnTrend';
-import BestSellers from './components/HomePage/BestSellers';
-import NewReleases from './components/HomePage/NewReleases';
+import Login from './homePage/login/Login';
+import Register from './homePage/register/Register';
+import HomePage from './homePage/homeMain/HomePage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,13 +21,8 @@ const PathRouter = () => {
       <ScrollToTop />
       <Routes>
           <Route path="/" element={<HomePage/>}/>
-          <Route path="/header" element={<Header />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path='/items' element={<Itens/>}/>
-          <Route path='/onTrend' element={<OnTrend/>}/>
-          <Route path='/bestSellers' element={<BestSellers/>}/>
-          <Route path='newReleases' element={<NewReleases/>}/>
       </Routes>
     </BrowserRouter>
   );

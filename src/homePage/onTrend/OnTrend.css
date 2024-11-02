@@ -1,0 +1,45 @@
+.on-trend-container {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 33px;
+    font-weight: 600;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.trend-button {
+    padding: 5px 20px;
+    background: none;
+    border: 1px solid rgb(180, 180, 180);
+    color: black;
+    border-radius: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.trend-button:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: none;
+}
+
+.trend-button:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: none;
+}
+
+.trend-button.active {
+    background: #4b9e71;
+    color: #fff;
+}
+
+.trend-button:not(.active):hover {
+    background: #6ab385;
+    color: white;
+}
