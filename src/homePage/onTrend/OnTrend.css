@@ -1,11 +1,13 @@
 .on-trend-container {
     width: 100%;
+    padding: 50px 0;
 }
 
 .title {
     text-align: center;
     font-size: 33px;
     font-weight: 600;
+    margin-bottom: 15px;
 }
 
 .button-container {

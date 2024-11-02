@@ -1,0 +1,40 @@
+.container-cards {
+    /* width: 100%; */
+    display: row;
+    height: auto;
+}
+.cards {
+    transform: scale(0.85);
+    height: 500px;
+    background: #FAF6F6;
+    /* background: green; */
+    padding: 35px 45px;
+    border-radius: 10px;
+}
+
+.image-cards{
+    width: 290px;
+}
+
+.button-buy {
+    background: #86D293;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+}
+.button-buy a {
+    text-decoration: none;
+    color: white;
+}
+
+.text {
+    font-size: 18px;
+    margin: 2px;
+    font-weight: 600;
+}
+
+.value-button{
+    display: flex;
+    justify-content: space-between;
+}

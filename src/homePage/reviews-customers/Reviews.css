@@ -1,0 +1,49 @@
+.container-review {
+    width: 100%;
+    background: #afafaf;
+    padding: 50px;
+    text-align: center;
+}
+
+.container-review-slider {
+    display: flex;
+}
+.box-customer {
+    position: relative;
+    background: white;
+    border-radius: 30px;
+    padding: 70px 40px 40px ;
+    transform: scale(0.85);
+    height: 380px;
+    margin: 60px 0;
+}
+
+.image-customer {
+    position: absolute;
+    z-index: 1;
+    padding: 0 135px;
+    top: 30px;
+}
+.box-customer .text-name {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0;
+}
+.box-customer .text-occupation {
+    color: gray;
+}
+.box-customer .text-description {
+    font-size: 15px;
+}
+
+.container-review .title1{
+    font-size: 35px;
+    color: white;
+    margin: 0;
+}
+.container-review .title2{
+    font-size: 45px;
+    color: black;
+    margin: 0;
+    font-weight: 600;
+}
