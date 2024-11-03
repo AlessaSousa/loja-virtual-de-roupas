@@ -20,7 +20,7 @@ function NewReleases() {
         },
         {
             img: sobretudoBege,
-            title: 'Sobretuto bege',
+            title: 'Sobretudo bege',
             value: 'R$ 45.00'
         },
         {
