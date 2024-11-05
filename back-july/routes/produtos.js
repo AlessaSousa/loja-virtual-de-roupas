@@ -10,7 +10,7 @@ router.use (express.static('public'))
 //Mostrar todos os produtos
 router.get('/', async (req, res) => {
     try {
-      const produtos = await Produtos.findAll({ include: 'categoria' });
+      const produtos = await Produtos.findAll({});
       res.json(produtos);
     } catch (error) {
       res.status(500).json({ error: error.message });

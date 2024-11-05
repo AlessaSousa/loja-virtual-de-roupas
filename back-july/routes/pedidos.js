@@ -10,7 +10,7 @@ router.use (express.static('public'))
 //Puxar e mostrar todos os pedidos
 router.get("/", async (req, res) => {
     try {
-        const pedidos = await Pedidos.findAll({ include: 'produtos' });
+        const pedidos = await Pedidos.findAll({});
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ error: error.message });
