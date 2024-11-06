@@ -73,9 +73,9 @@ function Login() {
                     </form>
                 </div>
 
-                <div className='imageRegister'>
-                    <img src={imageRegister} alt="Register" />
-                </div>
+                {/* <div className='imageRegister'> */}
+                    <img className='imageRegister' src={imageRegister} alt="Register" />
+                {/* </div> */}
             </div>
         </GoogleOAuthProvider>
     );

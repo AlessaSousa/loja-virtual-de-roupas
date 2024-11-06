@@ -5,8 +5,10 @@
 }
 
 .form {
-    padding: 70px 150px 180px;
+    /* padding: 70px 150px 180px; */
+    padding: 50px 150px;
     width: 100%;
+    height: 790px;
 }
 
 .form h2{
@@ -61,8 +63,8 @@
     padding: 5px 10px;
 }
 
-.imageRegister img {
-    width: 830px;
+.imageRegister {
+    width: 1000px;
     height: 790px;
     object-fit: cover;
     border-top-left-radius: 50px;

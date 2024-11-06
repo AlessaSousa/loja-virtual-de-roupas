@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors');
 const usuariosRouter = require('./routes/users')
 const produtosRouter = require('./routes/produtos')
 const pedidosRouter = require('./routes/pedidos')
@@ -14,6 +15,12 @@ app.use(express.json())
 app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
+
+// app.use(cors({
+//     origin: 'http://localhost:5173' // Permite requisições somente desta origem
+// }));
+
+app.use(cors());
 // app
 
 app.get('/', (req, res) => {

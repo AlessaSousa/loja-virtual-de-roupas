@@ -66,8 +66,8 @@
     padding: 5px 10px;
 }
 
-.imageRegister img {
-    width: 830px;
+.imageRegister {
+    width: 1000px;
     height: 790px;
     object-fit: cover;
     border-top-left-radius: 50px;
