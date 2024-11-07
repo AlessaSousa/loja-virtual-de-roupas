@@ -16,11 +16,11 @@ app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
 
-// app.use(cors({
-//     origin: 'http://localhost:5173' // Permite requisições somente desta origem
-// }));
+app.use(cors({
+    origin: '*' // Permite requisições somente desta orige
+}));
 
-app.use(cors());
+// app.use(cors());
 // app
 
 app.get('/', (req, res) => {
