@@ -8,6 +8,31 @@ import iconGoogle from '../../assets/svg/iconGoogle.svg';
 
 function Register() {
 
+    const [username, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setPassword] = useState('');
+
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    const url = 'http://localhost:3001/usuarios';
+    const payload = {
+        username,
+        email,
+        senha,
+    };
+
+    axios.post(url, payload)
+    .then(response => {
+        alert('Os dados foram salvos', response.data)
+        console.log(response.data)
+    })
+    .catch(error => {
+        alert('Erro ao cadastrar', error)
+        console.error("erro ao cadastrar: ", error);
+    })
+};
+
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
  

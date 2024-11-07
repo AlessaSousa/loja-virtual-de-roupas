@@ -24,6 +24,24 @@ module.exports = class UsuariosController {
         }
     }
 
+    static async create(req, res){
+        try {
+            const usuario = await usuarios.create({
+                username: req.body.username,
+                email: req.body.email,
+                senha: req.body.senha
+            })
+            if (usuario) {
+                res.status(200).send(usuario)
+            } else {
+                res.status(404).send({ error: 'Usuário não cadastrado' })
+            }
+        } catch (error) {
+            res.status(500).send({ error: 'Erro ao cadastrar o usuário' })
+        }
+
+    }
+
     static async delete (req, res) {
         try {
             const usuario = await usuarios.findByPk(req.params.id)

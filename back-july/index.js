@@ -7,13 +7,17 @@ require('dotenv').config()
 const PORT = process.env.PORT
 
 const db = require('./models')
-// rotas
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
+
+// app.use(cors({
+//     origin: '*' // Permite requisições somente desta orige
+// }));
+
 // app
 
 app.get('/', (req, res) => {
