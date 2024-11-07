@@ -18,7 +18,7 @@ function Register() {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
     const url = 'http://localhost:3001/usuarios';
     const payload = {
         username,
@@ -28,9 +28,11 @@ function Register() {
 
     axios.post(url, payload)
     .then(response => {
+        alert('Os dados foram salvos', response.data)
         console.log(response.data)
     })
     .catch(error => {
+        alert('Erro ao cadastrar', error)
         console.error("erro ao cadastrar: ", error);
     })
 };

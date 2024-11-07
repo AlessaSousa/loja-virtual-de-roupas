@@ -1,6 +1,7 @@
 const express = require('express')
-const app = express()
 const cors = require('cors');
+const app = express()
+app.use(cors());
 const usuariosRouter = require('./routes/users')
 const produtosRouter = require('./routes/produtos')
 const pedidosRouter = require('./routes/pedidos')
@@ -16,11 +17,10 @@ app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
 
-app.use(cors({
-    origin: '*' // Permite requisições somente desta orige
-}));
+// app.use(cors({
+//     origin: '*' // Permite requisições somente desta orige
+// }));
 
-// app.use(cors());
 // app
 
 app.get('/', (req, res) => {
