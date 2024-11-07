@@ -64,18 +64,18 @@ function Register() {
                         <div className='input'>
                             <label>Nome</label>
                             <input type="text" name="username" placeholder='Nome' value={username}
-                            onChange={(e) => setName(e.target.value)} />
+                            onChange={(e) => setName(e.target.value)} required />
                         </div>
                         <div className='input'>
                             <label>Email</label>
                             <input type="email" name="email" placeholder='E-mail'
-                            value={email} onChange={(e) => setEmail(e.target.value)}
+                            value={email} onChange={(e) => setEmail(e.target.value)} required
                             />
                         </div>
                         <div className='input'>
                             <label>Senha</label>
                             <input type="password" name="senha" placeholder='Senha' 
-                            value={senha} onChange={(e) => setPassword(e.target.value)}
+                            value={senha} onChange={(e) => setPassword(e.target.value)} required
                             />
                         </div>
                         <button className='button-register' type="submit">Cadastrar</button>
