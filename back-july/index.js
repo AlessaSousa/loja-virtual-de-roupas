@@ -1,7 +1,12 @@
 const express = require('express')
 const cors = require('cors');
 const app = express()
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173',   
+    credentials: true                  
+};
+
+app.use(cors(corsOptions));
 const usuariosRouter = require('./routes/users')
 const produtosRouter = require('./routes/produtos')
 const pedidosRouter = require('./routes/pedidos')

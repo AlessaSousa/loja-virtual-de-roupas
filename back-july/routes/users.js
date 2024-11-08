@@ -46,24 +46,32 @@ router.post('/', async (req, res) => {
   }
 });
 
+//Login
 router.post('/login', async (req, res) => {
-  const { email, senha } = req.body;
+    const { email, senha } = req.body;
 
-  // Verificar se o usuário existe
-  const user = await Usuarios.findOne({ where: { email: email } });
-  if (!user) {
-      return res.status(400).json({ message: 'Usuário não encontrado' });
-  }
+    if (!email || !senha) {
+        return res.status(400).json({ message: 'Email e senha são necessários' });
+    }
 
-  // Comparar a senha
-  const isPasswordValid = await bcrypt.compare(senha, user.senha);
-  if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Senha incorreta' });
-  }
+    try {
+        const user = await Usuarios.findOne({ where: { email } });
+        if (!user || !user.senha) {
+            return res.status(401).json({ message: 'Usuário não encontrado' });
+        }
+        const isPasswordValid = await bcrypt.compare(senha, user.senha);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Senha incorreta' });
+        }
 
-  return res.status(200).json({
-      message: 'Login realizado com sucesso'
-  });
+        return res.status(200).json({
+            message: 'Login realizado com sucesso',
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
 });
 
 
