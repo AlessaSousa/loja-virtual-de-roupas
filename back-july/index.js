@@ -16,15 +16,15 @@ app.use('/usuarios', usuariosRouter)
 app.use('/pedidos', pedidosRouter)
 app.use('/produtos', produtosRouter)
 
-// app.use(cors({
-//     origin: '*' // Permite requisições somente desta orige
-// }));
-
-// app
+app.post('/teste', (req, res) => {
+    console.log(req.body); // Verificar se os dados chegam corretamente
+    res.json({ recebido: req.body });
+});
 
 app.get('/', (req, res) => {
     res.send('Bem vindo à API para nossa loja de roupas. Utilize a rota /usuarios para ver nossos usuários, /produtos para nossos produtos disponíveis e /pedidos para ver nossos pedidos já feitos.');
   });
+  
 
 db.sequelize.sync().then(() =>{
     app.listen(PORT, () => {

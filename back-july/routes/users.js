@@ -18,11 +18,12 @@ router.get('/', async (req, res) => {
 })
 
 //Cadastrar novo usuário
-router.post('/usuarios', async (req, res) => {
+router.post('/', async (req, res) => {
+    console.log(req.body)
   const { nome, email, senha } = req.body;
   
   // Verificar se o usuário já existe
-  const userExists = await Usuarios.findOne({ email });
+  const userExists = await Usuarios.findOne({  where: { email: email } });
   if (userExists) {
       return res.status(400).json({ message: 'Usuário já existe!' });
   }
@@ -31,7 +32,7 @@ router.post('/usuarios', async (req, res) => {
   const hashedPassword = await bcrypt.hash(senha, 10);
 
   // Criar novo usuário
-  const newUser = new User({
+  const newUser = await Usuarios.create({
       nome,
       email,
       senha: hashedPassword
@@ -49,7 +50,7 @@ router.post('/login', async (req, res) => {
   const { email, senha } = req.body;
 
   // Verificar se o usuário existe
-  const user = await Usuarios.findOne({ email });
+  const user = await Usuarios.findOne({ where: { email: email } });
   if (!user) {
       return res.status(400).json({ message: 'Usuário não encontrado' });
   }
