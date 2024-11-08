@@ -6,6 +6,10 @@ import AppleLogin from 'react-apple-login';
 import iconApple from '../../assets/svg/iconApple.svg';
 import iconGoogle from '../../assets/svg/iconGoogle.svg';
 
+import axios from 'axios';
+import { useState } from 'react';
+
+
 function Register() {
 
     const [username, setName] = useState('');
@@ -52,27 +56,32 @@ function Register() {
     };
 
     return (
-        <GoogleOAuthProvider clientId="SUA_CLIENT_ID_GOOGLE">
+        // <GoogleOAuthProvider clientId="SUA_CLIENT_ID_GOOGLE">
             <div className='container-register'>
                 <div className='form'>
                     <h2>Cadastro</h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className='input'>
                             <label>Nome</label>
-                            <input type="text" name="name" placeholder='Nome' />
+                            <input type="text" name="username" placeholder='Nome' value={username}
+                            onChange={(e) => setName(e.target.value)} required />
                         </div>
                         <div className='input'>
                             <label>Email</label>
-                            <input type="email" name="email" placeholder='E-mail' />
+                            <input type="email" name="email" placeholder='E-mail'
+                            value={email} onChange={(e) => setEmail(e.target.value)} required
+                            />
                         </div>
                         <div className='input'>
                             <label>Senha</label>
-                            <input type="password" name="password" placeholder='Senha' />
+                            <input type="password" name="senha" placeholder='Senha' 
+                            value={senha} onChange={(e) => setPassword(e.target.value)} required
+                            />
                         </div>
                         <button className='button-register' type="submit">Cadastrar</button>
                         <p className='text-center p-5 pb-2'>ou</p>
                         
-                        <div className='button-icons'>
+                        {/* <div className='button-icons'>
                             <GoogleLogin
                                 onSuccess={handleGoogleLoginSuccess}
                                 onError={handleGoogleLoginFailure}
@@ -93,7 +102,7 @@ function Register() {
                                     </button>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
                         <p className='text-center'>
                             Já tem uma conta? <Link className='link' to='/login'>Entrar</Link>
@@ -101,11 +110,11 @@ function Register() {
                     </form>
                 </div>
 
-                <div className='imageRegister'>
-                    <img src={imageRegister} alt="Register" />
-                </div>
+                {/* <div className='imageRegister'> */}
+                    <img className='imageRegister' src={imageRegister} alt="Register" />
+                {/* </div> */}
             </div>
-        </GoogleOAuthProvider>
+        // </GoogleOAuthProvider>
     );
 }
 

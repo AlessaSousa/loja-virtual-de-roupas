@@ -86,8 +86,8 @@ function Reviews() {
                                     <p className='text-occupation'>{image.occupation}</p>
                                     <p className='text-description'>{image.description}</p>
                                     <div className='estrelinha'>
-                                        {imageEstrelinha.map((item) =>             
-                                        <img src={item.img}></img>
+                                        {imageEstrelinha.map((item, index) =>             
+                                        <img key={index} src={item.img}></img>
                                         )}
                             
                                     </div>

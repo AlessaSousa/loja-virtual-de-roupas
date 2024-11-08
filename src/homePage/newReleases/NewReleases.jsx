@@ -59,8 +59,8 @@ function NewReleases() {
                 <Slider {...sliderConfig}>
 
                     {roupas.map((image, index) =>
-                        <div className='cards'>
-                            <img className='image-cards' key={index} src={image.img}></img>
+                        <div key={index}  className='cards'>
+                            <img className='image-cards' src={image.img}></img>
                             <p className='text'>{image.title}</p>
                             <div className='value-button'>
                                 <p className='text'>{image.value}</p>

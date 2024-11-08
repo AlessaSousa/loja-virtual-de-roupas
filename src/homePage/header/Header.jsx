@@ -42,7 +42,14 @@ function Header() {
             </div>
 
             <div className="image-section">
-                <img src={imageHomePage} alt="Home Page" />
+                <img className='image-home-page' src={imageHomePage} alt="Home Page" />
+                <div className='text-image-home'>
+                    <p className='title-catalago'>Conheça nosso catálago</p>
+                    <p className='description-catalago'>O trendix conta com um catálago variado de peças ecológicas. Por que escolher<br></br>
+                        entre preço baixp e sustentabilidade quando se pode ter os dois?
+                    </p>
+                    <Link to='./catalago'><button className='btn-catalago'>Catálago</button> </Link> 
+                </div>
             </div>
         </>
     );
