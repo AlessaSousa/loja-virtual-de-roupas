@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 function Register() {
 
-    const [username, setName] = useState('');
+    const [nome, setName] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
 
@@ -21,7 +21,7 @@ function Register() {
     e.preventDefault();
     const url = 'http://localhost:3001/usuarios';
     const payload = {
-        username,
+        nome,
         email,
         senha,
     };
@@ -63,7 +63,7 @@ function Register() {
                     <form onSubmit={handleSubmit}>
                         <div className='input'>
                             <label>Nome</label>
-                            <input type="text" name="username" placeholder='Nome' value={username}
+                            <input type="text" name="nome" placeholder='Nome' value={nome}
                             onChange={(e) => setName(e.target.value)} required />
                         </div>
                         <div className='input'>

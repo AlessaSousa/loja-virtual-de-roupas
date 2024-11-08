@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 //Cadastrar novo usuário
-router.post('/register', async (req, res) => {
+router.post('/usuarios', async (req, res) => {
   const { nome, email, senha } = req.body;
   
   // Verificar se o usuário já existe

@@ -27,7 +27,7 @@ module.exports = class UsuariosController {
     static async create(req, res){
         try {
             const usuario = await usuarios.create({
-                username: req.body.username,
+                nome: req.body.nome,
                 email: req.body.email,
                 senha: req.body.senha
             })
