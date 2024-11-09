@@ -10,7 +10,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/authProvider';
 import axios from '../../api/axios';
 
-const LOGIN_URL = '/usuarios';
+const LOGIN_URL = 'http://localhost:3001/usuarios/login';
 
 function Login() {
     const { setAuth } = useContext(AuthContext);
@@ -18,7 +18,7 @@ function Login() {
     const errRef = useRef();
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setPassword] = useState('');
     const [errMessage, setErrMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -28,13 +28,13 @@ function Login() {
 
     useEffect(() => {
         setErrMessage('');
-    }, [email, password]);
+    }, [email, senha])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post(LOGIN_URL, 
-                { email, password },
+                JSON.stringify({email, senha: senha}),
                 {
                     headers: {'Content-Type': 'application/json'},
                     withCredentials: true
@@ -42,8 +42,8 @@ function Login() {
             );
             
             const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ email, roles, accessToken });
+            const roles = response?.data.roles;
+            setAuth({email, senha: senha, roles, accessToken});
             setEmail('');
             setPassword('');
             setSuccess(true);
@@ -106,9 +106,9 @@ function Login() {
                             value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
                     <div className='input'>
-                        <label htmlFor='password'>Senha</label>
-                        <input id='password' type="password" name="password" placeholder='Senha'
-                            value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <label htmlFor='senha'>Senha</label>
+                        <input id='senha' type="senha" name="senha" placeholder='Senha'
+                            value={senha} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <button className='button-register' type="submit">Entrar</button>
                     <p className='text-center p-5 pb-2'>ou</p>
