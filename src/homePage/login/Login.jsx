@@ -10,7 +10,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/authProvider';
 import axios from '../../api/axios';
 
-const LOGIN_URL = './auth';
+const LOGIN_URL = '/usuarios';
 
 function Login() {
     const { setAuth } = useContext(AuthContext);
@@ -20,48 +20,47 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errMessage, setErrMessage] = useState('');
-    const [success, setSucess] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
-    }, [])
+    }, []);
 
     useEffect(() => {
         setErrMessage('');
-    }, [email, password])
+    }, [email, password]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post(LOGIN_URL, 
-                JSON.stringify({email, password}),
+                { email, password },
                 {
-                    headers: {'Content-type': 'application/json'},
+                    headers: {'Content-Type': 'application/json'},
                     withCredentials: true
                 }
             );
-            console.log(JSON.stringify(response?.data));
-
+            
             const accessToken = response?.data?.accessToken;
-            const roles = response?.data.roles;
-            setAuth({email, password, roles, accessToken});
+            const roles = response?.data?.roles;
+            setAuth({ email, roles, accessToken });
             setEmail('');
             setPassword('');
-            setSucess(true); 
-        }
-        catch (error) {
-            if(!error?.response) {
+            setSuccess(true);
+        } catch (error) {
+            if (!error?.response) {
                 setErrMessage('No server response');
-            } else if (error.response?.status === 400 ) {
+            } else if (error.response?.status === 400) {
                 setErrMessage('Missing Email or Password');
             } else if (error.response?.status === 401) {
                 setErrMessage('Unauthorized');
             } else {
-                setErrMessage('Login failed')
+                setErrMessage('Login failed');
             }
             errRef.current.focus();
         }  
-    }
+    };
+
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
@@ -95,8 +94,8 @@ function Login() {
 
         ) : (
 
-        <section>
-            <p ref={errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live='assertive'>{errMessage}</p><div className='container-register'>
+        <>
+            <p ref={errRef} className={errMessage ? "errmsg" : "offscreen"} style={{margin:0}} aria-live='assertive'>{errMessage}</p><div className='container-register'>
             <div className='form'>
                 <h2>Bem vindo de volta</h2>
                 <p className='text-entrar'>Entrar em sua conta</p>
@@ -148,7 +147,7 @@ function Login() {
             {/* </div> */}
         </div>
     
-        </section>
+        </>
         )}
 
         {/* // </GoogleOAuthProvider> */}

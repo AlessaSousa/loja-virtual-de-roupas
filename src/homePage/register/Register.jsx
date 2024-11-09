@@ -5,8 +5,9 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import AppleLogin from 'react-apple-login';
 import iconApple from '../../assets/svg/iconApple.svg';
 import iconGoogle from '../../assets/svg/iconGoogle.svg';
+import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
+import api from '../../api/axios';
 import { useState } from 'react';
 
 
@@ -15,26 +16,27 @@ function Register() {
     const [username, setName] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
+    const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
-    const url = 'http://localhost:3001/usuarios';
+        e.preventDefault();
     const payload = {
         username,
         email,
         senha,
     };
 
-    axios.post(url, payload)
+    api.post('/usuarios', payload) 
     .then(response => {
-        alert('Os dados foram salvos', response.data)
-        console.log(response.data)
+        alert("Dados enviado com sucesso!")
+        console.log(response.data);
+        navigate('/login');
     })
     .catch(error => {
-        alert('Erro ao cadastrar', error)
+        alert("Erro ao cadastrar")
         console.error("erro ao cadastrar: ", error);
-    })
+    });
 };
 
     const handleGoogleLoginSuccess = (response) => {
