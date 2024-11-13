@@ -1,6 +1,6 @@
 import imageRegister from '../../assets/svg/imageRegister.svg';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Adicione useNavigate   
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import AppleLogin from 'react-apple-login';
 import iconApple from '../../assets/svg/iconApple.svg';
@@ -16,6 +16,7 @@ function Login() {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate(); // Inicialize o hook useNavigate
 
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
@@ -47,6 +48,9 @@ function Login() {
             setEmail('');
             setPassword('');
             setSuccess(true);
+
+            // Redirecionar para a Home
+            navigate('/'); // Redireciona automaticamente para a Home
         } catch (error) {
             if (!error?.response) {
                 setErrMessage('No server response');
@@ -107,7 +111,7 @@ function Login() {
                     </div>
                     <div className='input'>
                         <label htmlFor='senha'>Senha</label>
-                        <input id='senha' type="senha" name="senha" placeholder='Senha'
+                        <input id='senha' type="password" name="senha" placeholder='Senha'
                             value={senha} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <button className='button-register' type="submit">Entrar</button>
