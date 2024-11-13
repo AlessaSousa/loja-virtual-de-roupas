@@ -15,9 +15,14 @@
 .menu {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    align-self: center;
+    align-items: center;
+    /* align-self: center; */
     gap: 35px;
+}
+.menu .link-sobre, 
+.menu .link-catalago {
+    text-decoration: none;
+    color: gray;
 }
 
 .dropdown-btn {
@@ -92,4 +97,11 @@
     padding: 10px 20px;
     background: none;
     font-weight: 600;
+}
+
+#buscar {
+    border-radius: 20px;
+}
+#treeSelect {
+    border-radius: 20px;
 }

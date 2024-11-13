@@ -33,10 +33,10 @@ function Itens() {
             </div> */}
 
 <div class="image-row row">  
-   <div class="col-4">
+   <div class="col-4 p-2">
         <img src={imageWoman} class="w-100 text-center rounded fw-bold"></img>
     </div>
-    <div class="col-8">
+    <div class="col-8 p-0">
         <div class="image-small row">
             <div class="col-6">
                 <img className="" src={sueter} class="image-small w-100 text-center rounded fw-bold"></img>

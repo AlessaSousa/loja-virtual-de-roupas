@@ -9,6 +9,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 // import { use } from '../../../back-july/routes/users';
 import AuthContext from '../../context/authProvider';
 import axios from '../../api/axios';
+import clientId from '../../../clienteID/clienteID';
 
 const LOGIN_URL = 'http://localhost:3001/usuarios/login';
 
@@ -68,6 +69,7 @@ function Login() {
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
+        navigate('/')
  
     };
 
@@ -85,8 +87,8 @@ function Login() {
     };
 
     return (
-        // <GoogleOAuthProvider clientId="SUA_CLIENT_ID_GOOGLE">
-        <>
+        <GoogleOAuthProvider clientId={clientId}>
+      
         {success ? (
             <section>
                 <h1>You are logged in</h1>
@@ -117,17 +119,19 @@ function Login() {
                     <button className='button-register' type="submit">Entrar</button>
                     <p className='text-center p-5 pb-2'>ou</p>
 
-                    {/* <div className='button-icons'>
+                    <div className='button-icons'>
         <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
             render={(renderProps) => (
                 <button onClick={renderProps.onClick}>
                     <img src={iconGoogle} alt="Google Icon" /> Entrar com Google
                 </button>
             )}
         />
-        <AppleLogin
+        {/* <AppleLogin
             clientId="SUA_CLIENT_ID_APPLE"
             redirectURI="SUA_REDIRECT_URI"
             onSuccess={handleAppleLoginSuccess}
@@ -137,8 +141,8 @@ function Login() {
                     <img src={iconApple} alt="Apple Icon" /> Entrar com Apple
                 </button>
             )}
-        />
-    </div> */}
+        /> */}
+    </div>
 
                     <p className='text-center'>
                         Não tem uma conta? <Link className='link' to='/register'>Cadastrar</Link>
@@ -154,8 +158,7 @@ function Login() {
         </>
         )}
 
-        {/* // </GoogleOAuthProvider> */}
-</>
+         </GoogleOAuthProvider>
     );
     
 }

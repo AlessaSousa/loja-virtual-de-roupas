@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import api from '../../api/axios';
 import { useState } from 'react';
-
+import clientId from '../../../clienteID/clienteID';
 
 function Register() {
 
@@ -58,7 +58,7 @@ function Register() {
     };
 
     return (
-        // <GoogleOAuthProvider clientId="SUA_CLIENT_ID_GOOGLE">
+        <GoogleOAuthProvider clientId={clientId}>
             <div className='container-register'>
                 <div className='form'>
                     <h2>Cadastro</h2>
@@ -83,7 +83,7 @@ function Register() {
                         <button className='button-register' type="submit">Cadastrar</button>
                         <p className='text-center p-5 pb-2'>ou</p>
                         
-                        {/* <div className='button-icons'>
+                        <div className='button-icons'>
                             <GoogleLogin
                                 onSuccess={handleGoogleLoginSuccess}
                                 onError={handleGoogleLoginFailure}
@@ -93,7 +93,7 @@ function Register() {
                                     </button>
                                 )}
                             />
-                            <AppleLogin
+                            {/* <AppleLogin
                                 clientId="SUA_CLIENT_ID_APPLE"
                                 redirectURI="SUA_REDIRECT_URI"
                                 onSuccess={handleAppleLoginSuccess}
@@ -103,8 +103,8 @@ function Register() {
                                         <img src={iconApple} alt="Apple Icon" /> Entrar com Apple
                                     </button>
                                 )}
-                            />
-                        </div> */}
+                            /> */}
+                        </div>
 
                         <p className='text-center'>
                             Já tem uma conta? <Link className='link' to='/login'>Entrar</Link>
@@ -116,7 +116,7 @@ function Register() {
                     <img className='imageRegister' src={imageRegister} alt="Register" />
                 {/* </div> */}
             </div>
-        // </GoogleOAuthProvider>
+         </GoogleOAuthProvider>
     );
 }
 
