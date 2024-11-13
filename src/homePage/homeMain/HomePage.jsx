@@ -5,6 +5,7 @@ import Itens from "../itens/Itens"
 import OnTrend from "../onTrend/OnTrend"
 import Reviews from "../reviews-customers/Reviews"
 function HomePage(){
+    
     return(
         <>
             <Header></Header>

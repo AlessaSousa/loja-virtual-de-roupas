@@ -10,8 +10,11 @@ function Header() {
                 <img className="logo" src={logoTrendix} alt="Trendix Logo" />
 
                 <div className="menu">
-                    <div><p>Sobre</p></div>
-                    <div><p>Catálogo</p></div>
+                   <Link to="/src/homePage/sobre">Sobre</Link>
+                   <Link to="/src/homePage/catalogo">catalogo</Link>
+
+
+                    
 
                     <div className="dropdown">
                         <button className="dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
