@@ -70,8 +70,8 @@ function Login() {
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
-        const userEmail = response.profileObj.email;
-        setUser({email: userEmail})
+        // const userEmail = response.profileObj.email;
+        // setUser({email: userEmail})
         navigate('/')
  
     };
