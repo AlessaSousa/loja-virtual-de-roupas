@@ -8,10 +8,11 @@ import iconGoogle from '../../assets/svg/iconGoogle.svg';
 import { useRef, useState, useEffect, useContext } from 'react';
 // import { use } from '../../../back-july/routes/users';
 import AuthContext from '../../context/authProvider';
-import axios from '../../api/axios';
+import api from '../../api/axios';
 import clientId from '../../../clienteID/clienteID';
 
-const LOGIN_URL = 'http://localhost:3001/usuarios/login';
+// const LOGIN_URL = 'http://localhost:3001/usuarios/login';
+// import { useUser } from './UserContext';
 
 function Login() {
     const { setAuth } = useContext(AuthContext);
@@ -35,7 +36,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(LOGIN_URL, 
+            const response = await api.post('/usuarios/login', 
                 JSON.stringify({email, senha: senha}),
                 {
                     headers: {'Content-Type': 'application/json'},
@@ -69,6 +70,8 @@ function Login() {
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
+        const userEmail = response.profileObj.email;
+        setUser({email: userEmail})
         navigate('/')
  
     };
@@ -85,6 +88,8 @@ function Login() {
     const handleAppleLoginFailure = (error) => {
         console.log("Apple login failed:", error);
     };
+
+    // const {setUser} = useUser()
 
     return (
         <GoogleOAuthProvider clientId={clientId}>
