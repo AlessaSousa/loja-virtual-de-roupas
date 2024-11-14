@@ -7,12 +7,14 @@ import { TreeSelect } from 'primereact/treeselect';
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
-
+// import useUser from './context/UserContext.jsx';
+import { useUser } from '../../context/userContext';
 
 function Header() {
 
     const [nodes, setNodes] = useState(null);
     const [selectedNodeKeys, setSelectedNodeKeys] = useState(null);
+    const { user } = useUser();
 
     // useEffect(() => {
     //     NodeService.getTreeNodes().then((data) => setNodes(data));
@@ -115,15 +117,24 @@ function Header() {
                     <InputText id='buscar' placeholder="Buscar" />
                 </IconField>
 
+               
+
                 <div className="icons-and-buttons">
                     <i className="bi bi-heart"></i>
-                    <i className="bi bi-bag"></i>
+                    <i className="bi bi-bag"></i> 
+                     {user ?  (
+                      <p>Olá <b> {user.name} </b></p>
+                     ) : (
+                    <>
                     <button className="register-button">
                         <Link to="/register">Cadastro</Link>
                     </button>
                     <button className="login-button">
                         <Link to="/login">Login</Link>
                     </button>
+                    </>
+                     )}
+                     
                 </div>
             </div>
 

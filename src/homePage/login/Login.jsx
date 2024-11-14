@@ -10,12 +10,14 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/authProvider';
 import api from '../../api/axios';
 import clientId from '../../../clienteID/clienteID';
+import { jwtDecode } from 'jwt-decode';
 
 // const LOGIN_URL = 'http://localhost:3001/usuarios/login';
-// import { useUser } from './UserContext';
+import { useUser } from '../../context/userContext';
 
 function Login() {
     const { setAuth } = useContext(AuthContext);
+    const { setUser } = useUser();
     const userRef = useRef();
     const errRef = useRef();
     const navigate = useNavigate(); // Inicialize o hook useNavigate
@@ -70,10 +72,11 @@ function Login() {
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
-        // const userEmail = response.profileObj.email;
-        // setUser({email: userEmail})
-        navigate('/')
- 
+        const decodeToken = jwtDecode(response.credential);
+        const userName = decodeToken.name;
+            setUser({ name: userName });
+            navigate('/');
+
     };
 
     const handleGoogleLoginFailure = (error) => {
