@@ -6,7 +6,7 @@ import iconGoogle from '../../assets/svg/iconGoogle.svg';
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/authProvider';
 import api from '../../api/axios';
-import clientId from '../../../clienteID/clienteID';
+import clientId from '../../clienteID/clienteID';
 import { jwtDecode } from 'jwt-decode';
 import { useUser } from '../../context/userContext';
 

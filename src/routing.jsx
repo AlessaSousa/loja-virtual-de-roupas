@@ -6,7 +6,7 @@ import Register from './homePage/register/Register';
 import HomePage from './homePage/homeMain/HomePage';
 import Sobre from './homePage/sobre/sobre';
 import { UserProvider } from './context/userContext';
-import Catalog from './catalogo/Catalog';
+import Catalog from './homePage/catalogo/Catalog';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

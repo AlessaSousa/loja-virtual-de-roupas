@@ -76,7 +76,7 @@ function Reviews() {
                     <Slider {...slideConfig}>
 
                         {customers.map((image, index) =>
-                            <div key={index}>
+                            <div class='cards-review' key={index}>
                                 <div className='image-customer'>
                                     <img src={image.img}></img>
                                 </div>

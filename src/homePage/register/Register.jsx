@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import api from '../../api/axios';
 import { useState } from 'react';
-import clientId from '../../../clienteID/clienteID';
+import clientId from '../../clienteID/clienteID';
 import { useUser } from '../../context/userContext';
 
 function Register() {

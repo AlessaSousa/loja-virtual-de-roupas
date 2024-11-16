@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import logoTrendix from '../../assets/svg/logoTrendix.svg';
-import imageHomePage from '../../assets/svg/imageHomePage.svg';
 import './Header.css';
 import React, { useState } from "react";
 import { TreeSelect } from 'primereact/treeselect';
@@ -112,19 +111,6 @@ function Header() {
                     <Link className='link-catalago' to="/catalogo">Catalogo</Link>
 
 
-
-
-                    {/* <div className="dropdown">
-                        <button className="dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categoria <i className="bi-caret-down"></i>
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">Action</a></li>
-                            <li><a className="dropdown-item" href="#">Another action</a></li>
-                            <li><a className="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div> */}
-
                     <div className="">
                         <TreeSelect id="treeSelect" value={selectedNodeKeys} onChange={(e) => setSelectedNodeKeys(e.value)} options={categoria}
                             className="md:w-15rem w-full" placeholder="Categoria"></TreeSelect>
@@ -170,17 +156,6 @@ function Header() {
                     </>
                      )}
                      
-                </div>
-            </div>
-
-            <div className="image-section">
-                <img className='image-home-page' src={imageHomePage} alt="Home Page" />
-                <div className='text-image-home'>
-                    <p className='title-catalago'>Conheça nosso catálago</p>
-                    <p className='description-catalago'>O trendix conta com um catálago variado de peças ecológicas. Por que escolher<br></br>
-                        entre preço baixo e sustentabilidade quando se pode ter os dois?
-                    </p>
-                    <Link to='./catalago'><button className='btn-catalago'>Catálago</button> </Link>
                 </div>
             </div>
         </>
