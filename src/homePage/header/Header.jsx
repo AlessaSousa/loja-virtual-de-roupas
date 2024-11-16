@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logoTrendix from '../../assets/svg/logoTrendix.svg';
 import imageHomePage from '../../assets/svg/imageHomePage.svg';
 import './Header.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TreeSelect } from 'primereact/treeselect';
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
