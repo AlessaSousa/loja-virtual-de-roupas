@@ -12,13 +12,33 @@ import { useUser } from '../../context/userContext';
 
 function Header() {
 
-    const [nodes, setNodes] = useState(null);
     const [selectedNodeKeys, setSelectedNodeKeys] = useState(null);
     const { user } = useUser();
 
-    // useEffect(() => {
-    //     NodeService.getTreeNodes().then((data) => setNodes(data));
-    // }, []);
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+
+    const data = [
+        { id: 1, type: 'Produto', name: 'Camisa' },
+        { id: 2, type: 'Usuário', name: 'João' },
+        { id: 3, type: 'Pedido', name: 'Pedido #123' },
+        { id: 4, type: 'Produto', name: 'Calça' },
+        { id: 5, type: 'Usuário', name: 'Maria' },
+    ];
+
+    const handleSearch = (event) => {
+    const searchQuery = event.target.value.toLowerCase();
+    setQuery(searchQuery);
+
+    if (searchQuery.trim()) {
+        const filteredResults = data.filter((item) => 
+            item.name.toLowerCase().includes(searchQuery)
+    )
+    setResults(filteredResults);
+    } else {
+        setResults([]);
+    }
+   }
 
     const categoria = [
         {
@@ -114,8 +134,23 @@ function Header() {
 
                 <IconField iconPosition="left">
                     <InputIcon className="pi pi-search"> </InputIcon>
-                    <InputText id='buscar' placeholder="Buscar" />
+                    <InputText onChange={handleSearch} id='buscar' placeholder="Buscar" />
                 </IconField>
+                <ul style={{ listStyle: 'none', padding: 0}}>
+                    {results.length > 0 ? (
+                        results.map((item) => (
+                            <li
+                            key={item.id}
+                            style={{ padding: '10px',
+                                borderBottom: '1px solid #ddd,'
+                            }}>
+                                <strong>{item.type}: </strong> {item.name}
+                            </li>
+                        ))
+                    ) : (
+                        query && <li>Nenhum resultado encontrado.</li>
+                    )}
+                </ul>
 
                
 
