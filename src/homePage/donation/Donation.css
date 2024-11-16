@@ -1,0 +1,70 @@
+.container-cupom{
+    width: 100%;
+    background: #86D293;
+    height: 130px;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.text-cupom{
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+}
+.button-cupom{
+    border: 1px solid white;
+    background: none;
+    border-radius: 12px;
+    color: white;
+    padding: 10px 20px ;
+}
+.button-donation{
+    border: 1px solid black;
+    background: none;
+    border-radius: 12px;
+    color: black;
+    padding: 10px 20px ;
+}
+
+
+.container-donation {
+    width: 100%;
+    height: auto;
+    background: #E4FFEE;
+    padding: 50px;
+    display: flex;
+}
+.container-donation img {
+    margin-right: 80px;
+    width: 700px;
+}
+
+.title-donation{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.text-donation {
+    margin-top: 50px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.container-eco{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 80px;
+    align-items: center;
+}
+
+.title-eco {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.text-eco {
+    font-size: 18px;
+    margin-top: 35px;
+}
