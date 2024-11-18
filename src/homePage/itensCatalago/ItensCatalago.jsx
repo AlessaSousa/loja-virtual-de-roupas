@@ -1,4 +1,3 @@
-import React from 'react';
 import calcaAlfaiataria from '../../assets/svg/calça-alfaiataria.svg';
 import camisaMasculina from '../../assets/svg/camisa-masculina-branca.svg';
 import sobretudoBege from '../../assets/svg/sobretudo-bege.svg';
@@ -34,13 +33,13 @@ function ItensCatalago({ selectedCategory }) {
   const filteredRoupas = selectedCategory ? roupas.filter(item => item.category === selectedCategory) : roupas;
 
   return (
-    <div className="container-cards">
+    <div className="container-cards-catalago">
       {filteredRoupas.map((image, index) =>
-        <div key={index} className='cards'>
-          <img className='image-cards' src={image.img} alt={image.title} />
-          <p className='text'>{image.title}</p>
+        <div key={index} className='cards-catalago'>
+          <img className='image-cards-catalago' src={image.img} alt={image.title} />
+          <p className='text-catalago'>{image.title}</p>
           <div className='value-button'>
-            <p className='text'>{image.value}</p>
+            <p className='text-catalago'>{image.value}</p>
             <button className="button-buy">
               <Link to="#">Comprar</Link>
             </button>

@@ -3,7 +3,7 @@ import "./Filter.css";
 
 const Filter = ({ categories, onFilterChange }) => {
   return (
-    <div className="filter-container">
+    <div className="filter-container mb-6">
       <select 
         onChange={(e) => onFilterChange(e.target.value)} 
         className="filter-dropdown"

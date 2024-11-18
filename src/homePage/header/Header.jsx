@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logoTrendix from '../../assets/svg/logoTrendix.svg';
 import './Header.css';
 import React, { useState } from "react";
-import { TreeSelect } from 'primereact/treeselect';
+// import { TreeSelect } from 'primereact/treeselect';
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
@@ -11,7 +11,7 @@ import { useUser } from '../../context/userContext';
 
 function Header() {
 
-    const [selectedNodeKeys, setSelectedNodeKeys] = useState(null);
+    // const [selectedNodeKeys, setSelectedNodeKeys] = useState(null);
     const { user } = useUser();
 
     const [query, setQuery] = useState('');
@@ -39,67 +39,67 @@ function Header() {
     }
    }
 
-    const categoria = [
-        {
-            key: '0',
-            label: 'Feminino',
-            data: 'Documents Folder',
-            icon: 'pi pi-fw pi-inbox',
-            children: [
-                { key: '0-0', label: 'Blusas e Camisetas', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
-                { key: '0-1', label: 'Camisas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
-                { key: '0-2', label: 'Vestidos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-3', label: 'Saias', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-4', label: 'Calças e Leggings', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-5', label: 'Shorts e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-6', label: 'Jaquetas e Casacos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-7', label: 'Moda íntima e Lingerie', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '0-8', label: 'Moda Praia', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-            ]
-        },
-        {
-            key: '1',
-            label: 'Masculino',
-            data: 'Events Folder',
-            icon: 'pi pi-fw pi-calendar',
-            children: [
-                { key: '1-0', label: 'Blusas e Camisetas', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
-                { key: '1-1', label: 'Camisas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
-                { key: '1-2', label: 'Calças e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '1-3', label: 'Jaquetas e Casacos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '1-4', label: 'Moletom', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '1-5', label: 'Roupa Social', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '1-6', label: 'Moda íntima', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-            ]
-        },
-        {
-            key: '2',
-            label: 'Infantil',
-            data: 'Events Folder',
-            icon: 'pi pi-fw pi-calendar',
-            children: [
-                { key: '2-0', label: 'Roupas para bebê', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
-                { key: '2-1', label: 'Conjuntos e Macacões', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
-                { key: '2-2', label: 'Camisetas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '2-3', label: 'Vestidos e Saias', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '2-4', label: 'Calças e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '2-5', label: 'Jaquetas e Moletons', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' }
+    // const categoria = [
+    //     {
+    //         key: '0',
+    //         label: 'Feminino',
+    //         data: 'Documents Folder',
+    //         icon: 'pi pi-fw pi-inbox',
+    //         children: [
+    //             { key: '0-0', label: 'Blusas e Camisetas', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
+    //             { key: '0-1', label: 'Camisas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
+    //             { key: '0-2', label: 'Vestidos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-3', label: 'Saias', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-4', label: 'Calças e Leggings', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-5', label: 'Shorts e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-6', label: 'Jaquetas e Casacos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-7', label: 'Moda íntima e Lingerie', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '0-8', label: 'Moda Praia', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //         ]
+    //     },
+    //     {
+    //         key: '1',
+    //         label: 'Masculino',
+    //         data: 'Events Folder',
+    //         icon: 'pi pi-fw pi-calendar',
+    //         children: [
+    //             { key: '1-0', label: 'Blusas e Camisetas', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
+    //             { key: '1-1', label: 'Camisas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
+    //             { key: '1-2', label: 'Calças e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '1-3', label: 'Jaquetas e Casacos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '1-4', label: 'Moletom', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '1-5', label: 'Roupa Social', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '1-6', label: 'Moda íntima', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //         ]
+    //     },
+    //     {
+    //         key: '2',
+    //         label: 'Infantil',
+    //         data: 'Events Folder',
+    //         icon: 'pi pi-fw pi-calendar',
+    //         children: [
+    //             { key: '2-0', label: 'Roupas para bebê', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
+    //             { key: '2-1', label: 'Conjuntos e Macacões', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
+    //             { key: '2-2', label: 'Camisetas e Polos', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '2-3', label: 'Vestidos e Saias', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '2-4', label: 'Calças e Bermudas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '2-5', label: 'Jaquetas e Moletons', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' }
 
-            ]
-        },
-        {
-            key: '3',
-            label: 'Esporte',
-            data: 'Events Folder',
-            icon: 'pi pi-fw pi-calendar',
-            children: [
-                { key: '3-0', label: 'Roupas de Academia', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
-                { key: '3-1', label: 'Shorts e Leggings', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
-                { key: '3-2', label: 'Camisetas e Regatas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
-                { key: '3-3', label: 'Agasalhos e Jaqeutas Esportivas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' }
-            ]
-        },
-    ]
+    //         ]
+    //     },
+    //     {
+    //         key: '3',
+    //         label: 'Esporte',
+    //         data: 'Events Folder',
+    //         icon: 'pi pi-fw pi-calendar',
+    //         children: [
+    //             { key: '3-0', label: 'Roupas de Academia', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
+    //             { key: '3-1', label: 'Shorts e Leggings', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
+    //             { key: '3-2', label: 'Camisetas e Regatas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' },
+    //             { key: '3-3', label: 'Agasalhos e Jaqeutas Esportivas', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' }
+    //         ]
+    //     },
+    // ]
 
     return (
         <>
@@ -111,10 +111,10 @@ function Header() {
                     <Link className='link-catalago' to="/catalogo">Catalogo</Link>
 
 
-                    <div className="">
+                    {/* <div className="">
                         <TreeSelect id="treeSelect" value={selectedNodeKeys} onChange={(e) => setSelectedNodeKeys(e.value)} options={categoria}
                             className="md:w-15rem w-full" placeholder="Categoria"></TreeSelect>
-                    </div>
+                    </div> */}
 
                 </div>
 
