@@ -1,11 +1,11 @@
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from './homePage/login/Login';
-import Register from './homePage/register/Register';
-import HomePage from './homePage/homeMain/HomePage';
-import Sobre from './homePage/sobre/sobre';
-import Catalogo from './homePage/catalogo/Catalogo';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
+import HomePage from './pages/homeMain/HomePage';
+import Sobre from './pages/sobre/sobre';
+import Catalogo from './pages/catalogo/Catalogo';
 import { UserProvider } from './context/userContext';
 
 function ScrollToTop() {
