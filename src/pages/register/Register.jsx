@@ -2,14 +2,13 @@ import imageRegister from '../../assets/svg/imageRegister.svg';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import AppleLogin from 'react-apple-login';
-import iconApple from '../../assets/svg/iconApple.svg';
 import iconGoogle from '../../assets/svg/iconGoogle.svg';
 import { useNavigate } from 'react-router-dom';
 
 import api from '../../api/axios';
 import { useState } from 'react';
-import clientId from '../../../clienteID/clienteID';
+import clientId from '../../clienteID/clienteID';
+import { useUser } from '../../context/userContext';
 
 function Register() {
 
@@ -17,7 +16,7 @@ function Register() {
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const { setUser } = useUser();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,6 +40,10 @@ function Register() {
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
+        const decodeToken = jwtDecode(response.credential);
+        const userName = decodeToken.name;
+        setUser({ name: userName });
+        navigate('/');
  
     };
 
@@ -48,14 +51,6 @@ function Register() {
         console.log("Google login failed:", error);
     };
 
-    const handleAppleLoginSuccess = (response) => {
-        console.log("Apple login successful:", response);
-  
-    };
-
-    const handleAppleLoginFailure = (error) => {
-        console.log("Apple login failed:", error);
-    };
 
     return (
         <GoogleOAuthProvider clientId={clientId}>
@@ -87,23 +82,14 @@ function Register() {
                             <GoogleLogin
                                 onSuccess={handleGoogleLoginSuccess}
                                 onError={handleGoogleLoginFailure}
+                                cookiePolicy={'single_host_origin'}
+                                isSignedIn={true}
                                 render={(renderProps) => (
                                     <button onClick={renderProps.onClick}>
                                         <img src={iconGoogle} alt="Google Icon" /> Entrar com Google
                                     </button>
                                 )}
                             />
-                            {/* <AppleLogin
-                                clientId="SUA_CLIENT_ID_APPLE"
-                                redirectURI="SUA_REDIRECT_URI"
-                                onSuccess={handleAppleLoginSuccess}
-                                onFailure={handleAppleLoginFailure}
-                                render={(renderProps) => (
-                                    <button onClick={renderProps.onClick}>
-                                        <img src={iconApple} alt="Apple Icon" /> Entrar com Apple
-                                    </button>
-                                )}
-                            /> */}
                         </div>
 
                         <p className='text-center'>

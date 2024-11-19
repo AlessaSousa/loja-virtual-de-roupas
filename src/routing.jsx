@@ -7,6 +7,8 @@ import HomePage from './pages/homeMain/HomePage';
 import Sobre from './pages/sobre/sobre';
 import Catalogo from './pages/catalogo/Catalogo';
 import { UserProvider } from './context/userContext';
+import Catalog from './pages/catalogo/Catalog';
+import Profile from './pages/profile/Profile';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,7 +30,8 @@ const PathRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/sobre" element={<Sobre />} />
-          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path='/catalago' element={<Catalog/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </UserProvider>
     </BrowserRouter>

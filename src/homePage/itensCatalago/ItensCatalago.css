@@ -1,0 +1,84 @@
+.cards-catalago:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.image-cards-catalago {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.text-catalago {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 15px 0;
+  line-height: 1.4;
+}
+
+.value-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.value-button .text-catalago {
+  font-weight: bold;
+  color: #333;
+}
+
+.button-buy {
+  background-color: #86D293;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-buy:hover {
+  background-color: #86D293;
+}
+.container-cards-catalago {
+  width: 100%;
+  max-width: 1900px;
+  margin: auto;
+  margin-top: -90px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  grid-template-rows: repeat(3, 600px);
+  gap: 20px;
+  justify-items: center;
+  overflow: hidden;
+}
+
+.cards-catalago {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 25px;
+  margin: 15px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-catalago:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

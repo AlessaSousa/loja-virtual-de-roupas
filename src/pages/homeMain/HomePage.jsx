@@ -1,3 +1,4 @@
+import Cover from "../coverHeader/Cover"
 import Donation from "../donation/Donation"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
@@ -9,6 +10,7 @@ function HomePage(){
     return(
         <>
             <Header></Header>
+            <Cover></Cover>
             <Itens></Itens>
             <OnTrend></OnTrend>
             <Donation></Donation>

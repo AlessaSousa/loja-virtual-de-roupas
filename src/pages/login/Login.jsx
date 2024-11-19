@@ -1,18 +1,13 @@
 import imageRegister from '../../assets/svg/imageRegister.svg';
 import './Login.css';
-import { Link, useNavigate } from 'react-router-dom'; // Adicione useNavigate   
+import { Link, useNavigate } from 'react-router-dom';  
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import AppleLogin from 'react-apple-login';
-import iconApple from '../../assets/svg/iconApple.svg';
 import iconGoogle from '../../assets/svg/iconGoogle.svg';
 import { useRef, useState, useEffect, useContext } from 'react';
-// import { use } from '../../../back-july/routes/users';
 import AuthContext from '../../context/authProvider';
 import api from '../../api/axios';
-import clientId from '../../../clienteID/clienteID';
+import clientId from '../../clienteID/clienteID';
 import { jwtDecode } from 'jwt-decode';
-
-// const LOGIN_URL = 'http://localhost:3001/usuarios/login';
 import { useUser } from '../../context/userContext';
 
 function Login() {
@@ -20,7 +15,7 @@ function Login() {
     const { setUser } = useUser();
     const userRef = useRef();
     const errRef = useRef();
-    const navigate = useNavigate(); // Inicialize o hook useNavigate
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
@@ -52,9 +47,7 @@ function Login() {
             setEmail('');
             setPassword('');
             setSuccess(true);
-
-            // Redirecionar para a Home
-            navigate('/'); // Redireciona automaticamente para a Home
+            navigate('/'); 
         } catch (error) {
             if (!error?.response) {
                 setErrMessage('No server response');
@@ -83,14 +76,6 @@ function Login() {
         console.log("Google login failed:", error);
     };
 
-    const handleAppleLoginSuccess = (response) => {
-        console.log("Apple login successful:", response);
-  
-    };
-
-    const handleAppleLoginFailure = (error) => {
-        console.log("Apple login failed:", error);
-    };
 
     // const {setUser} = useUser()
 
@@ -139,17 +124,6 @@ function Login() {
                 </button>
             )}
         />
-        {/* <AppleLogin
-            clientId="SUA_CLIENT_ID_APPLE"
-            redirectURI="SUA_REDIRECT_URI"
-            onSuccess={handleAppleLoginSuccess}
-            onFailure={handleAppleLoginFailure}
-            render={(renderProps) => (
-                <button onClick={renderProps.onClick}>
-                    <img src={iconApple} alt="Apple Icon" /> Entrar com Apple
-                </button>
-            )}
-        /> */}
     </div>
 
                     <p className='text-center'>
