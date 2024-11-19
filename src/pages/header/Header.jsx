@@ -104,7 +104,7 @@ function Header() {
     return (
         <>
             <div className="header">
-                <img className="logo" src={logoTrendix} alt="Trendix Logo" />
+                <Link to='/'><img className="logo" src={logoTrendix} alt="Trendix Logo" /></Link>
 
                 <div className="menu">
                     <Link className='link-sobre' to="/sobre">Sobre</Link>
@@ -122,6 +122,7 @@ function Header() {
                     <InputIcon className="pi pi-search"> </InputIcon>
                     <InputText onChange={handleSearch} id='buscar' placeholder="Buscar" />
                 </IconField>
+
                 <ul style={{ listStyle: 'none', padding: 0}}>
                     {results.length > 0 ? (
                         results.map((item) => (
@@ -144,7 +145,7 @@ function Header() {
                     <i className="bi bi-heart"></i>
                     <i className="bi bi-bag"></i> 
                      {user ?  (
-                      <p>Olá <b> {user.name} </b></p>
+                      <p class='m-0'>Olá <b> {user.name} </b></p>
                      ) : (
                     <>
                     <button className="register-button">

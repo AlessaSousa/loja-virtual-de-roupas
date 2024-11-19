@@ -61,44 +61,6 @@
     color: white;
 }
 
-.image-section img {
-    width: 100%;
-}
-.image-home-page {
-    position: relative;
-    z-index: 1;
-    /* filter: brightness(0.70) opacity(0.75); */
-    /* filter: blur(2px); */
-}
-
-.text-image-home {
-    top: 300px;
-    position: absolute;
-    z-index: 2;
-    /* text-shadow: #000 3px 0 10px; */
-    text-shadow: 1px 1px 1px white, 0 0 1em black, 0 0 0.2em black;
-}
-.text-image-home .title-catalago {
-    margin: 0 70px;
-    font-size: 45px;
-    font-weight: 600;
-    color: white;
-}
-.text-image-home .description-catalago {
-    margin: 10px 70px 0;
-    font-size: 18px;
-    color: white;
-}
-.text-image-home .btn-catalago {
-    /* color: white; */
-    margin: 60px 70px 0 ;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background: none;
-    font-weight: 600;
-}
-
 #buscar {
     border-radius: 20px;
 }
