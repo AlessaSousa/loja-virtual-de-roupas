@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import ItensCatalago from "../itensCatalago/ItensCatalago";
-import Filter from "../filter/filter";
+import Filter from "../filter/Filter";
 import nossocatalogo from "../../assets/png/nossocatalogo.png";
 import "./Catalog.css";
 

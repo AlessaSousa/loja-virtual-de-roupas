@@ -108,7 +108,7 @@ function Header() {
 
                 <div className="menu">
                     <Link className='link-sobre' to="/sobre">Sobre</Link>
-                    <Link className='link-catalago' to="/catalogo">Catalogo</Link>
+                    <Link className='link-catalago' to="/catalago">Catalago</Link>
 
 
                     {/* <div className="">
