@@ -1,29 +1,32 @@
 .container-cards {
-    /* width: 100%; */
+    width: 100%;
     display: row;
     height: auto;
 }
 .cards {
-    transform: scale(0.85);
+    transform: scale(1.2);
     height: 500px;
     background: #FAF6F6;
     /* background: green; */
-    padding: 35px 45px;
+    padding: 35px 75px;
     border-radius: 10px;
+    margin: 50px 0 0 0;
 }
 
 .image-cards{
-    width: 290px;
+    width: 100%;
 }
 
-.button-buy {
+.button-buy-releases {
     background: #86D293;
     border: none;
     color: white;
     border-radius: 8px;
-    padding: 5px 20px;
+    padding: 3px 7px;
+    font-size: 12px;
+    float: right;
 }
-.button-buy a {
+.button-buy-releases a {
     text-decoration: none;
     color: white;
 }

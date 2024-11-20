@@ -67,3 +67,11 @@
 #treeSelect {
     border-radius: 20px;
 }
+.icon-bag {
+    text-decoration: none;
+    color: black;
+}
+
+#avatar {
+    background: none;
+}

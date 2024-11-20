@@ -8,7 +8,9 @@ import Sobre from './pages/sobre/sobre';
 import { UserProvider } from './context/userContext';
 import Catalog from './pages/catalogo/Catalog';
 import Profile from './pages/profile/Profile';
-
+import Carrinho from './pages/carrinho/Carrinho';
+import Pagamentos from './pages/pagamentos/Pagamentos';
+import { CarrinhoProvider } from './context/carrinhoContext'
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -21,19 +23,23 @@ function ScrollToTop() {
 
 const PathRouter = () => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <UserProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path='/catalago' element={<Catalog/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-        </Routes>
-      </UserProvider>
-    </BrowserRouter>
+    <CarrinhoProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <UserProvider>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path='/catalago' element={<Catalog />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/carrinho' element={<Carrinho />} />
+            <Route path='/pagamentos' element={<Pagamentos />} />
+          </Routes>
+        </UserProvider>
+      </BrowserRouter>
+    </CarrinhoProvider>
   );
 };
 
