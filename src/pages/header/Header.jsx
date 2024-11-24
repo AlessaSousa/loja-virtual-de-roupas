@@ -94,17 +94,25 @@ function Header() {
                     </Link>
 
                     {user ? (
-                        <p class='m-0'>Olá <b> {user.name} </b></p>
-                    ) : (
-                        <>
-                            <button className="register-button">
-                                <Link to="/register">Cadastro</Link>
-                            </button>
-                            <button className="login-button">
-                                <Link to="/login">Login</Link>
-                            </button>
-                        </>
-                    )}
+    <p className="m-0">
+        Olá{" "}
+        <b>
+            <Link to="/profile" style={{ textDecoration: "none", color: "inherit" }}>
+                {user.name}
+            </Link>
+        </b>
+    </p>
+) : (
+    <>
+        <button className="register-button">
+            <Link to="/register">Cadastro</Link>
+        </button>
+        <button className="login-button">
+            <Link to="/login">Login</Link>
+        </button>
+    </>
+)}
+
 
                 </div>
             </div>

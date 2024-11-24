@@ -1,0 +1,142 @@
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-button {
+  font-size: 20px;
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-title {
+  text-align: center;
+  font-size: 32px;
+  margin: 20px 0;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 10px 20px;
+  margin: 0 15px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: gray;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: green;
+  border-bottom: 2px solid green;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: center; /* Centraliza todo o conteúdo */
+  align-items: flex-start;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha quando necessário */
+  margin-top: 30px; /* Espaçamento superior */
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo da seção de perfil */
+  width: 80%; /* Torna a área de perfil maior */
+  padding-right: 30px;
+}
+
+.profile-photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 200px; /* Tamanho maior para a foto */
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-photo-container p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.overview-options {
+  display: flex;
+  justify-content: space-between; /* Distribui as caixas de forma mais espaçada */
+  flex-wrap: wrap;
+  gap: 30px; /* Aumenta o espaço entre as caixas */
+  width: 100%;
+  margin-top: 30px;
+}
+
+.option-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.option {
+  padding: 60px; /* Aumenta o tamanho das caixas */
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 160px; /* Tamanho maior */
+  height: 160px; /* Tamanho maior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.option:hover {
+  background-color: #e0e0e0;
+}
+
+.option-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.logout-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.logout-button {
+  width: 200px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: darkred;
+}
