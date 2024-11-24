@@ -19,6 +19,7 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Evitar rolagem horizontal */
 }
 
 /* Contêiner da Aplicação */
@@ -96,11 +97,18 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Banner em largura total */
+/* Banner cobrindo a largura total */
+.banner-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .banner {
     width: 100%;
     height: auto;
-    max-height: 400px; /* Limite de altura do banner */
+    display: block;
+    max-height: 400px; /* Limite de altura */
     object-fit: cover; /* Cobre a largura da tela */
 }
 
@@ -109,18 +117,16 @@ body {
     display: none;
 }
 
-/* Grid para os produtos no catálogo */
-.catalog-container {
-    padding: 20px;
-}
-
+/* Grid ajustado para 4 colunas */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr); /* 4 produtos por linha */
+    gap: 20px;
     width: 100%;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom: 40px; /* Espaço abaixo do grid de produtos */
 }
 
 /* Estilo do Card do Produto */
@@ -133,6 +139,7 @@ body {
     text-align: center;
     transition: box-shadow 0.3s ease;
     max-width: 250px;
+    margin: 10px auto; /* Espaço entre os cards no catálogo */
 }
 
 /* Imagem do produto dentro do card */
@@ -174,36 +181,22 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Rodapé */
-.footer {
-    background-color: var(--white-color);
-    color: var(--text-color);
+/* Texto e Estilo das Categorias */
+.categories-text {
     text-align: center;
-    padding: 20px 0;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-/* Responsividade para dispositivos menores */
-@media (max-width: 768px) {
-    .catalog-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 10px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .catalog-grid {
-        grid-template-columns: 1fr;
-    }
+.categories-text p {
+    font-size: 18px;
+    color: var(--text-color);
 }
 
 .other-categories {
     margin-top: 30px;
     text-align: center;
+    margin-bottom: 50px; /* Espaço abaixo das outras categorias */
 }
 
 .other-categories h2 {
@@ -228,11 +221,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px; /* Espaço entre os itens de categoria */
 }
 
-/* Imagens das categorias - Ajustando o tamanho */
+/* Imagens das categorias */
 .category-image {
-    width: 400px; /* Tamanho ajustado para as imagens */
+    width: 400px;
     height: 300px;
     object-fit: cover;
     border-radius: 8px;
@@ -258,14 +252,56 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Ajustes nas fontes para melhorar o design */
-.categories-text {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+/* Avaliações */
+.container-review {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.categories-text p {
-    font-size: 18px;
-    color: var(--text-color);
+/* Rodapé */
+.footer {
+    background-color: #f5f5f5; /* Fundo claro */
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.footer .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer .links img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer .text-direitos {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 produtos por linha */
+        gap: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-grid {
+        grid-template-columns: 1fr; /* 1 produto por linha */
+        gap: 10px;
+    }
 }

@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './homePage/login/Login';
 import Register from './homePage/register/Register';
 import HomePage from './homePage/homeMain/HomePage';
-import Catalog from './catalogo/Catalog'; // Ajuste o caminho conforme necessário
+import Catalog from './catalogo/Catalog'; 
+import Favorites from './favorites/favorites';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,7 +25,8 @@ const PathRouter = () => {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/catalogo" element={<Catalog />} /> {/* Rota para o Catalog */}
+          <Route path="/catalogo" element={<Catalog />} /> 
+          <Route path="/favorites" element={<Favorites />} /> 
       </Routes>
     </BrowserRouter>
   );

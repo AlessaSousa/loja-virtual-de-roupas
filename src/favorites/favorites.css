@@ -1,0 +1,115 @@
+/* Variáveis para facilitar manutenção */
+:root {
+    --primary-color: #6ab04c; /* Verde suave */
+    --secondary-color: #57a63e; /* Verde escuro */
+    --tertiary-color: #A1D6B2; /* Verde escuro para textos e cabeçalhos */
+    --white-color: #ffffff; /* Cor branca */
+    --hover-color: #c0392b; /* Cor ao passar o mouse para remover favorito */
+    --text-color: #333; /* Cor do texto principal */
+    --card-bg-color: #ffffff; /* Fundo do card */
+    --border-color: #e0e0e0; /* Cor da borda do card */
+    --btn-padding: 8px 12px; /* Padding dos botões */
+    --font-family: 'Arial', sans-serif;
+    
+}
+
+/* Corpo */
+body {
+    font-family: var(--font-family);
+    background-color: var(--white-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Contêiner Principal */
+.favorites-container {
+    width: 100%;
+    text-align: center;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between; /* Espaça os elementos */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--white-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Logo */
+.logo {
+    height: 50px;
+    margin-left: 10px; /* Margem para encostar na borda */
+}
+
+/* Navegação */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Barra de Pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    outline: none;
+    width: 200px;
+}
+
+.search-bar:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px var(--secondary-color);
+}
+
+.search-button {
+    padding: 8px 12px;
+    background-color: #6ab04c; /* Cor verde */
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Conteúdo Principal */
+.favorites-content {
+    padding: 20px;
+}
+
+.favorites-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.favorites-content p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
