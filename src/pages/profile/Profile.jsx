@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
 import { Link } from "react-router-dom";
-import Config from "./Config";
+import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
@@ -43,6 +43,7 @@ const Profile = () => {
       {/* Container do perfil e informações */}
       <div className="profile-content">
         <div className="profile-info">
+          
           {/* Foto e Olá, {user.name} */}
           <div className="profile-photo-container">
             <img

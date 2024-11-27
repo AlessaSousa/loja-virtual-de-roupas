@@ -1,0 +1,1 @@
+import "./Pedidos.css";
