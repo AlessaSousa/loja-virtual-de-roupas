@@ -1,0 +1,39 @@
+.config-container {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.config-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha as configurações à esquerda */
+  width: 100%;
+}
+
+.config-item {
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  margin: 10px 0;
+  border-bottom: 1px solid #ccc; /* Linha separadora */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* Espaço entre o texto e o ícone */
+  align-items: center; /* Alinha o texto e o ícone verticalmente */
+}
+
+.config-item:hover {
+  background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+
+.config-item p {
+  margin: 0; /* Remove margens do texto */
+  font-size: 16px;
+  flex-grow: 1; /* Faz o texto ocupar o máximo de espaço disponível */
+}
+
+.config-item .arrow {
+  font-size: 18px;
+  color: gray; /* Cor do ícone */
+  margin-left: 10px; /* Adiciona um pequeno espaçamento antes do ícone */
+}

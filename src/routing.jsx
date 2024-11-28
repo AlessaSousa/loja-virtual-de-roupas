@@ -1,16 +1,16 @@
-import { useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import HomePage from './pages/homePage/HomePage';
-import Sobre from './pages/sobre/sobre';
-import { UserProvider } from './context/userContext';
-import Catalog from './pages/catalogo/Catalog';
-import Profile from './pages/profile/Profile';
-import Carrinho from './pages/carrinho/Carrinho';
-import Pagamentos from './pages/pagamentos/Pagamentos';
-import { CarrinhoProvider } from './context/carrinhoContext'
+import { useLayoutEffect } from "react";
+import { useLocation, BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import HomePage from "./pages/homePage/HomePage";
+import Sobre from "./pages/sobre/Sobre";
+import Catalog from "./pages/catalogo/Catalog";
+import Profile from "./pages/profile/Profile";
+import Carrinho from "./pages/carrinho/Carrinho";
+import Pagamentos from "./pages/pagamentos/Pagamentos";
+import { UserProvider } from "./context/userContext";
+import { CarrinhoProvider } from "./context/carrinhoContext";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
