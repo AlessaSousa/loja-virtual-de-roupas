@@ -32,7 +32,7 @@ const PathRouter = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path='/catalago' element={<Catalog />} />
+            <Route path='/catalogo' element={<Catalog />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/carrinho' element={<Carrinho />} />
             <Route path='/pagamentos' element={<Pagamentos />} />

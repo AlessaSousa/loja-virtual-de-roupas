@@ -10,7 +10,7 @@ const Cover = () => {
         <p className='description-catalago'>O trendix conta com um catálago variado de peças ecológicas. Por que escolher<br></br>
             entre preço baixo e sustentabilidade quando se pode ter os dois?
         </p>
-        <Link to='./catalago'><button className='btn-catalago'>Catálago</button> </Link>
+        <Link to='./catalogo'><button className='btn-catalago'>Catálago</button> </Link>
     </div>
 </div>
   )

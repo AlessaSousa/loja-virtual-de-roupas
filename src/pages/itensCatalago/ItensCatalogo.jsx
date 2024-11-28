@@ -10,12 +10,12 @@ import ShortsCorrida from '../../assets/png/shorts-corrida.png';
 import Saia from '../../assets/png/saia.png';
 import TopEsportivo from '../../assets/png/top-esportivo.png';
 import JaquetaCouro from '../../assets/png/jaqueta-couro.png';
-import './ItensCatalago.css';
+import './ItensCatalogo.css';
 import { useNavigate } from 'react-router-dom';
 import { useCarrinho } from '../../context/carrinhoContext';
 
 
-function ItensCatalago({ selectedCategory }) {
+function ItensCatalogo({ selectedCategory }) {
 
   const { adicionarAoCarrinho } = useCarrinho();
   const navigate = useNavigate();
@@ -66,4 +66,4 @@ function ItensCatalago({ selectedCategory }) {
   );
 }
 
-export default ItensCatalago;
+export default ItensCatalogo;

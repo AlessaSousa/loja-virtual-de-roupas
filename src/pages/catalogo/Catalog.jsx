@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import ItensCatalago from "../itensCatalago/ItensCatalago";
 import Filter from "../filter/Filter";
 import nossocatalogo from "../../assets/png/nossocatalogo.png";
 import "./Catalog.css";
+import ItensCatalogo from "../itensCatalago/ItensCatalogo";
 
 const Catalog = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -24,7 +24,7 @@ const Catalog = () => {
 
       <Filter categories={categories} onFilterChange={handleFilterChange} />
 
-      <ItensCatalago selectedCategory={selectedCategory} />
+      <ItensCatalogo selectedCategory={selectedCategory} />
 
       <Footer />
     </div>
