@@ -63,7 +63,7 @@ const Profile = () => {
               </div>
               <div className="option-container">
                 <div className="option"> {/* A caixa em si */} </div>
-                <div className="option-label">Gerente de produtos</div>
+                <div className="option-label"><Link className="link-management" to='/management'>Gerenciamento de produtos</Link></div>
               </div>
               <div className="option-container">
                 <div className="option"> {/* A caixa em si */} </div>

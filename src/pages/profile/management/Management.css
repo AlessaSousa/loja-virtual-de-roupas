@@ -1,0 +1,74 @@
+.container-management {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.form-management {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+}
+#floatLabel {
+    width: 100%;
+}
+#floatLabel-textarea {
+    width: 100%;
+    resize: none;
+}
+#number-input {
+    width: 100%;
+}
+
+.btn-cad-produto{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-cad-produto button {
+    padding: 5px 20px;
+    border-radius: 10px;
+    border: 2px solid #86D293;
+    background: none;
+}
+.btn-cad-produto button:hover{
+    background: #86D293;
+    color: white;
+}
+.photoDialog img{
+    border: 2px solid #86D293;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    position: relative;
+}
+.input-file {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #86D293;
+    color: white;
+    right: 43%;
+    bottom: 57%;
+    position: absolute;
+    z-index: 3;
+    .pi {
+        font-size: 0.8rem;
+    }
+}
+
+.input-file input[type="file"] {
+    display: none;
+}
+
+.input-file label {
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.margin-between {
+    margin: 10px;
+}
