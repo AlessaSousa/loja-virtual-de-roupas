@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importando useNavigate
 import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
   const { user, setUser } = useUser();
   const [activeTab, setActiveTab] = useState("overview");
+  const navigate = useNavigate(); // Hook para navegação
 
   const handleLogout = () => {
     setUser(null); // Desloga o usuário
   };
 
+  const handleGerenteProdutos = () => {
+    navigate("/profile/anuncios/Anuncios.jsx"); // Redireciona para anúncios
+  };
+
   return (
     <div className="profile-container">
-      {/* Botão Voltar */}
       <div className="back-button-container">
         <Link to="/" className="back-button">
           &lt; Voltar
         </Link>
       </div>
 
-      {/* Título */}
       <h1 className="profile-title">Meu perfil</h1>
 
-      {/* Seletor de abas */}
       <div className="tabs-container">
         <button
           className={`tab ${activeTab === "overview" ? "active" : ""}`}
@@ -40,11 +42,8 @@ const Profile = () => {
         </button>
       </div>
 
-      {/* Container do perfil e informações */}
       <div className="profile-content">
         <div className="profile-info">
-          
-          {/* Foto e Olá, {user.name} */}
           <div className="profile-photo-container">
             <img
               src={user?.photo || "https://via.placeholder.com/150"}
@@ -54,11 +53,10 @@ const Profile = () => {
             <p>Olá, <strong>{user?.name || "Usuário"}</strong></p>
           </div>
 
-          {/* Lista de configurações ou visão geral */}
           {activeTab === "overview" ? (
             <div className="overview-options">
               <div className="option-container">
-                <div className="option"> {/* A caixa em si */} </div>
+                <div className="option" />
                 <div className="option-label">Preferências de estilo</div>
               </div>
               <div className="option-container">
@@ -66,7 +64,7 @@ const Profile = () => {
                 <div className="option-label"><Link className="link-management" to='/management'>Gerenciamento de produtos</Link></div>
               </div>
               <div className="option-container">
-                <div className="option"> {/* A caixa em si */} </div>
+                <div className="option" />
                 <div className="option-label">Itens favoritos</div>
               </div>
             </div>
@@ -76,7 +74,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Botão de logout */}
       <div className="logout-button-container">
         <button className="logout-button" onClick={handleLogout}>
           Sair
