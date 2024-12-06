@@ -9,5 +9,10 @@ router.post('/signin', UsuariosController.create)
 //Mostrar todos os produtos
 router.get('/items', ProdutosController.produto)
 
+//No caso de rota não encontrada, retornar erro 404
+router.use((req, res, next) =>{
+    res.status(404).send('Rota não encontrada')
+})
+
 module.exports = router;
 

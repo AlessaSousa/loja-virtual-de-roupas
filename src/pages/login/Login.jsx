@@ -32,17 +32,23 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const token = localStorage.getItem('authToken');
+
         try {
-            const response = await api.post('/usuarios/login', 
+            const response = await api.post('/private/login', 
                 JSON.stringify({email, senha: senha}),
                 {
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json',  'Authorization': `Bearer ${token}`},
                     withCredentials: true
                 }
             );
             
             const accessToken = response?.data?.accessToken;
             const roles = response?.data.roles;
+            // After successful login
+            localStorage.setItem('authToken', response?.data?.accessToken);
+
             setAuth({email, senha: senha, roles, accessToken});
             setEmail('');
             setPassword('');
@@ -50,6 +56,7 @@ function Login() {
             navigate('/'); 
         } catch (error) {
             if (!error?.response) {
+                console.log(error);
                 setErrMessage('No server response');
             } else if (error.response?.status === 400) {
                 setErrMessage('Missing Email or Password');
