@@ -8,6 +8,8 @@ import Catalog from "./pages/catalogo/Catalog";
 import Profile from "./pages/profile/Profile";
 import Carrinho from "./pages/carrinho/Carrinho";
 import Pagamentos from "./pages/pagamentos/Pagamentos";
+import InfPessoais from "./pages/profile/config/informacoesPessoais/InfPessoais";
+import Anuncios from "./pages/profile/config/anuncios/Anuncios"
 import { UserProvider } from "./context/userContext";
 import { CarrinhoProvider } from "./context/carrinhoContext";
 
@@ -32,10 +34,14 @@ const PathRouter = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path="/catalago" element={<Catalog />} />
+            <Route path="/catalogo" element={<Catalog />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/pagamentos" element={<Pagamentos />} />
+            <Route path="/profile/informacoes-pessoais" element={<InfPessoais />} />
+            <Route path="/anuncios" element={<Anuncios />} />
+
+            
           </Routes>
         </UserProvider>
       </BrowserRouter>
