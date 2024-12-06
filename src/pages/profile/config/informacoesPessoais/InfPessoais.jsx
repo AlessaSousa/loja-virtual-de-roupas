@@ -14,7 +14,7 @@ const countries = [
   "Austrália"
 ];
 
-function EnderecoForm() {
+function InfPessoais() {
   const [endereco, setEndereco] = useState({
     pais: '',
     nomeCompleto: '',
@@ -125,9 +125,9 @@ function EnderecoForm() {
         Instruções de entrega:
         <textarea name="instrucoes" value={endereco.instrucoes} onChange={handleChange} />
       </label>
-      <button type="submit">Atualizar endereço</button>
+      <button className='btn-inf-pessoais' type="submit">Atualizar endereço</button>
     </form>
   );
 }
 
-export default EnderecoForm;
+export default InfPessoais;

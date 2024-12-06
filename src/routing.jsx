@@ -8,11 +8,10 @@ import Catalog from "./pages/catalogo/Catalog";
 import Profile from "./pages/profile/Profile";
 import Carrinho from "./pages/carrinho/Carrinho";
 import Pagamentos from "./pages/pagamentos/Pagamentos";
-import InfPessoais from "./pages/profile/config/informacoesPessoais/InfPessoais";
-import Anuncios from "./pages/profile/config/anuncios/Anuncios"
 import { UserProvider } from "./context/userContext";
 import { CarrinhoProvider } from "./context/carrinhoContext";
 import Management from "./pages/profile/management/Management";
+import InfPessoais from "./pages/profile/config/informacoesPessoais/InfPessoais";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,8 +38,7 @@ const PathRouter = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/pagamentos" element={<Pagamentos />} />
-            <Route path="/profile/informacoes-pessoais" element={<InfPessoais />} />
-            <Route path="/anuncios" element={<Anuncios />} />
+            <Route path="/informacoes-pessoais" element={<InfPessoais />} />
             <Route path='/management' element={<Management/>} />
           </Routes>
         </UserProvider>
