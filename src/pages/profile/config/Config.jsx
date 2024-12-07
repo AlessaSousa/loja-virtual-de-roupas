@@ -6,7 +6,7 @@ const Config = () => {
   const navigate = useNavigate(); 
 
   
-  const goToPersonalInfo = () => navigate("/profile/informacoes-pessoais");
+  const goToPersonalInfo = () => navigate("/profile/infPessoais");
   const goToOrders = () => navigate("/profile/seus-pedidos");
   const goToProducts = () => navigate("/cibfi/anuncios/Anuncios.jsx");
 

@@ -1,133 +1,182 @@
-import React, { useState } from 'react';
-import './infPessoais.css'; // Importando o arquivo CSS
+import React, { useState, useEffect } from "react";
+import "./infPessoais.css";
 
-const countries = [
-  "Brasil",
-  "Estados Unidos",
-  "Canadá",
-  "Reino Unido",
-  "Alemanha",
-  "França",
-  "Japão",
-  "China",
-  "Índia",
-  "Austrália"
-];
-
-function InfPessoais() {
-  const [endereco, setEndereco] = useState({
-    pais: '',
-    nomeCompleto: '',
-    telefone: '',
-    cep: '',
-    endereco: '',
-    numero: '',
-    complemento: '',
-    bairro: '',
-    cidade: '',
-    estado: '',
-    padrao: false,
-    instrucoes: '',
+const InfPessoais = () => {
+  const [user, setUser] = useState({
+    nome: "Usuário",
+    foto: "",
+    pais: "",
+    telefone: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
   });
 
-  const [fotoPerfil, setFotoPerfil] = useState(null);
+  const [countries, setCountries] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setEndereco((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) =>
+        setCountries(
+          data.map((country) => ({
+            nome: country.name.common,
+            bandeira: country.flags.svg,
+          }))
+        )
+      );
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
   };
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFotoPerfil(URL.createObjectURL(file));
+  const handleCepChange = (e) => {
+    const cep = e.target.value;
+    setUser({ ...user, cep });
+
+  
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.erro) {
+            setUser((prev) => ({
+              ...prev,
+              rua: data.logradouro,
+              bairro: data.bairro,
+              cidade: data.localidade,
+              estado: data.uf,
+            }));
+          }
+        });
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Endereço atualizado:', endereco);
+  const handleFotoChange = () => {
+    alert("Função para trocar a foto do perfil!");
+  };
+
+  const handleAlterarClick = () => {
+    alert("Função para alterar informações pessoais!");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Suas Informações</h1>
-      
-      <div className="profile-photo">
-        <label htmlFor="fotoPerfil">
-          <div className="photo-preview">
-            {fotoPerfil ? (
-              <img src={fotoPerfil} alt="Foto de perfil" />
-            ) : (
-              <span>Alterar</span>
-            )}
-          </div>
-        </label>
-        <input type="file" id="fotoPerfil" onChange={handlePhotoChange} accept="image/*" style={{ display: 'none' }} />
+    <div className="infPessoais">
+      <div className="profile-header">
+        <div className="profile-photo" onClick={handleFotoChange}>
+          <img
+            src={user.foto || "https://via.placeholder.com/150"}
+            alt="Foto do usuário"
+            className="photo"
+          />
+          <a className="alterar-foto" href="#alterar">
+            alterar
+          </a>
+        </div>
+        <h2 className="greeting">Olá, {user.nome}!</h2>
       </div>
 
-      <label>
-        País/Região:
-        <select name="pais" value={endereco.pais} onChange={handleChange}>
-          <option value="">Selecione o país</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>
-              {country}
+      <div className="profile-info">
+        <label htmlFor="pais">País</label>
+        <select
+          id="pais"
+          name="pais"
+          value={user.pais}
+          onChange={handleInputChange}
+        >
+          <option value="">Selecione um país</option>
+          {countries.map((country) => (
+            <option key={country.nome} value={country.nome}>
+              {country.nome}{" "}
             </option>
           ))}
         </select>
-      </label>
 
-      <label>
-        Nome completo:
-        <input type="text" name="nomeCompleto" value={endereco.nomeCompleto} onChange={handleChange} />
-      </label>
-      <label>
-        Telefone:
-        <input type="tel" name="telefone" value={endereco.telefone} onChange={handleChange} />
-      </label>
-      <label>
-        CEP:
-        <input type="text" name="cep" value={endereco.cep} onChange={handleChange} />
-      </label>
-      <label>
-        Endereço:
-        <input type="text" name="endereco" value={endereco.endereco} onChange={handleChange} />
-      </label>
-      <label>
-        Número da residência:
-        <input type="text" name="numero" value={endereco.numero} onChange={handleChange} />
-      </label>
-      <label>
-        Complemento:
-        <input type="text" name="complemento" value={endereco.complemento} onChange={handleChange} />
-      </label>
-      <label>
-        Bairro:
-        <input type="text" name="bairro" value={endereco.bairro} onChange={handleChange} />
-      </label>
-      <label>
-        Cidade:
-        <input type="text" name="cidade" value={endereco.cidade} onChange={handleChange} />
-      </label>
-      <label>
-        Estado:
-        <input type="text" name="estado" value={endereco.estado} onChange={handleChange} />
-      </label>
-      <label>
-        Tornar este o meu endereço padrão:
-        <input type="checkbox" name="padrao" checked={endereco.padrao} onChange={handleChange} />
-      </label>
-      <label>
-        Instruções de entrega:
-        <textarea name="instrucoes" value={endereco.instrucoes} onChange={handleChange} />
-      </label>
-      <button className='btn-inf-pessoais' type="submit">Atualizar endereço</button>
-    </form>
+        <label htmlFor="telefone">Telefone</label>
+        <input
+          type="text"
+          id="telefone"
+          name="telefone"
+          value={user.telefone}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="cep">CEP</label>
+        <input
+          type="text"
+          id="cep"
+          name="cep"
+          value={user.cep}
+          onChange={handleCepChange}
+        />
+
+        <label htmlFor="rua">Rua</label>
+        <input
+          type="text"
+          id="rua"
+          name="rua"
+          value={user.rua}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="numero">Número</label>
+        <input
+          type="text"
+          id="numero"
+          name="numero"
+          value={user.numero}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="complemento">Complemento</label>
+        <input
+          type="text"
+          id="complemento"
+          name="complemento"
+          value={user.complemento}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="bairro">Bairro</label>
+        <input
+          type="text"
+          id="bairro"
+          name="bairro"
+          value={user.bairro}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="cidade">Cidade</label>
+        <input
+          type="text"
+          id="cidade"
+          name="cidade"
+          value={user.cidade}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="estado">Estado</label>
+        <input
+          type="text"
+          id="estado"
+          name="estado"
+          value={user.estado}
+          onChange={handleInputChange}
+        />
+
+        <button className="alterar-btn" onClick={handleAlterarClick}>
+          Alterar
+        </button>
+      </div>
+    </div>
   );
-}
+};
 
 export default InfPessoais;

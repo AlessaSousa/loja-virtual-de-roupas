@@ -38,7 +38,7 @@ const PathRouter = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/pagamentos" element={<Pagamentos />} />
-            <Route path="/informacoes-pessoais" element={<InfPessoais />} />
+            <Route path="/profile/infPessoais" element={<InfPessoais />} />
             <Route path='/management' element={<Management/>} />
           </Routes>
         </UserProvider>
