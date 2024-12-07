@@ -6,6 +6,9 @@ const router = express.Router()
 //Cadastrar novo usuário
 router.post('/signin', UsuariosController.create)
 
+//Login
+router.post('/login', UsuariosController.login)
+
 //Mostrar todos os produtos
 router.get('/items', ProdutosController.produto)
 

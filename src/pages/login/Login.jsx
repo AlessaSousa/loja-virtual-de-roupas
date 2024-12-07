@@ -36,18 +36,23 @@ function Login() {
         const token = localStorage.getItem('authToken');
 
         try {
-            const response = await api.post('/private/login', 
+            const response = await api.post('/public/login', 
                 JSON.stringify({email, senha: senha}),
                 {
                     headers: {'Content-Type': 'application/json',  'Authorization': `Bearer ${token}`},
                     withCredentials: true
                 }
-            );
+            ).then(response => {
+                const token = response.data.accessToken;
+                localStorage.setItem('authToken', token);
+                console.log('Token:', token);
+            })
+            .catch(error => {
+                console.error('Login error:', error.response?.data || error.message);
+            });
             
             const accessToken = response?.data?.accessToken;
             const roles = response?.data.roles;
-            // After successful login
-            localStorage.setItem('authToken', response?.data?.accessToken);
 
             setAuth({email, senha: senha, roles, accessToken});
             setEmail('');

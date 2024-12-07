@@ -16,7 +16,6 @@ import { useCarrinho } from '../../context/carrinhoContext';
 
 
 function ItensCatalogo({ selectedCategory }) {
-
   const { adicionarAoCarrinho } = useCarrinho();
   const navigate = useNavigate();
   const roupas = [

@@ -12,9 +12,6 @@ router.get('/users', verifyToken, UsuariosController.showAll)
 //Mostrar apenas um usuário por chave primária (ID)
 router.get('/user', verifyToken, UsuariosController.showOne)
 
-//Login
-router.post('/login', verifyToken, UsuariosController.login)
-
 //Registrar novo produto
 router.post('/item', verifyToken, ProdutosController.cadastrarProduto);
 
