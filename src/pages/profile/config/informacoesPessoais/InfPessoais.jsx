@@ -53,7 +53,7 @@ function InfPessoais() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form-inf-pessoais' onSubmit={handleSubmit}>
       <h1>Suas Informações</h1>
       
       <div className="profile-photo">

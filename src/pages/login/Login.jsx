@@ -96,6 +96,11 @@ function Login() {
         <>
             <p ref={errRef} className={errMessage ? "errmsg" : "offscreen"} style={{margin:0}} aria-live='assertive'>{errMessage}</p><div className='container-register'>
             <div className='form'>
+            <div className="back-button-container">
+                        <Link to="/" className="back-button">
+                            &lt; Voltar
+                        </Link>
+                    </div>
                 <h2>Bem vindo de volta</h2>
                 <p className='text-entrar'>Entrar em sua conta</p>
                 <form onSubmit={handleSubmit}>

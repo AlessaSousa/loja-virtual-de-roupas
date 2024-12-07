@@ -11,32 +11,38 @@ import clientId from '../../clienteID/clienteID';
 import { useUser } from '../../context/userContext';
 
 function Register() {
-
     const [nome, setName] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setPassword] = useState('');
+    const [confirmarSenha, setConfirmarSenha] = useState('');
     const navigate = useNavigate();
     const { setUser } = useUser();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    const payload = {
-        nome,
-        email,
-        senha,
-    };
 
-    api.post('/usuarios', payload) 
-    .then(response => {
-        alert("Dados enviado com sucesso!")
-        console.log(response.data);
-        navigate('/login');
-    })
-    .catch(error => {
-        alert("Erro ao cadastrar")
-        console.error("erro ao cadastrar: ", error);
-    });
-};
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem!");
+            return;
+        }
+
+        const payload = {
+            nome,
+            email,
+            senha,
+        };
+
+        api.post('/usuarios', payload)
+            .then(response => {
+                alert("Dados enviados com sucesso!");
+                console.log(response.data);
+                navigate('/login');
+            })
+            .catch(error => {
+                alert("Erro ao cadastrar");
+                console.error("Erro ao cadastrar: ", error);
+            });
+    };
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
@@ -44,40 +50,71 @@ function Register() {
         const userName = decodeToken.name;
         setUser({ name: userName });
         navigate('/');
- 
     };
 
     const handleGoogleLoginFailure = (error) => {
         console.log("Google login failed:", error);
     };
 
-
     return (
         <GoogleOAuthProvider clientId={clientId}>
             <div className='container-register'>
+
                 <div className='form'>
+                    <div className="back-button-container">
+                        <Link to="/" className="back-button">
+                            &lt; Voltar
+                        </Link>
+                    </div>
                     <h2>Cadastro</h2>
                     <form onSubmit={handleSubmit}>
                         <div className='input'>
                             <label>Nome</label>
-                            <input type="text" name="nome" placeholder='Nome' value={nome}
-                            onChange={(e) => setName(e.target.value)} required />
+                            <input
+                                type="text"
+                                name="nome"
+                                placeholder='Nome'
+                                value={nome}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className='input'>
                             <label>Email</label>
-                            <input type="email" name="email" placeholder='E-mail'
-                            value={email} onChange={(e) => setEmail(e.target.value)} required
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder='E-mail'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                         </div>
                         <div className='input'>
                             <label>Senha</label>
-                            <input type="password" name="senha" placeholder='Senha' 
-                            value={senha} onChange={(e) => setPassword(e.target.value)} required
+                            <input
+                                type="password"
+                                name="senha"
+                                placeholder='Senha'
+                                value={senha}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className='input'>
+                            <label>Confirme sua Senha</label>
+                            <input
+                                type="password"
+                                name="confirmarSenha"
+                                placeholder='Confirme sua senha'
+                                value={confirmarSenha}
+                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                                required
                             />
                         </div>
                         <button className='button-register' type="submit">Cadastrar</button>
                         <p className='text-center p-5 pb-2'>ou</p>
-                        
+
                         <div className='button-icons'>
                             <GoogleLogin
                                 onSuccess={handleGoogleLoginSuccess}
@@ -98,11 +135,9 @@ function Register() {
                     </form>
                 </div>
 
-                {/* <div className='imageRegister'> */}
-                    <img className='imageRegister' src={imageRegister} alt="Register" />
-                {/* </div> */}
+                <img className='imageRegister' src={imageRegister} alt="Register" />
             </div>
-         </GoogleOAuthProvider>
+        </GoogleOAuthProvider>
     );
 }
 
