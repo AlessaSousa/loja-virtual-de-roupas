@@ -62,7 +62,7 @@ h2 {
 
 .btn-cad-produto button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #6ab04c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -71,7 +71,7 @@ h2 {
 }
 
 .btn-cad-produto button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 @media (max-width: 768px) {
@@ -84,4 +84,10 @@ h2 {
 #input {
     width: 100%;
     display: flex;
+}
+
+#input-textarea{
+    width: 100%;
+    display: flex;
+    resize: none;
 }

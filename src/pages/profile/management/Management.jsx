@@ -7,6 +7,7 @@ import { TreeSelect } from 'primereact/treeselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { RadioButton } from 'primereact/radiobutton';
 import api from "../../../api/axios";
+import { Link } from "react-router-dom";
 
 const Management = () => {
     const [formData, setFormData] = useState({
@@ -16,10 +17,10 @@ const Management = () => {
         tamanho: "",
         estado: "",
         marca: "",
-        preco: "",
+        preco: null,
         doacao: false,
         localizacao: "",
-        quantidade: 0,
+        quantidade: null,
         tags: "",
         fotos: [],
     });
@@ -56,6 +57,11 @@ const Management = () => {
     return (
         <div className="container-management">
             <form className="form-management" onSubmit={handleSubmit}>
+                <div className="back-button-container">
+                    <Link to="../" className="back-button">
+                        &lt; Voltar
+                    </Link>
+                </div>
                 <h2>Adicionar Produto</h2>
 
                 <div className="image-upload">
@@ -96,13 +102,13 @@ const Management = () => {
                 <div className="input-group">
                     <FloatLabel>
                         <InputTextarea
-                            id="input"
+                            id="input-textarea"
                             name="descricao"
                             value={formData.descricao}
                             onChange={handleChange}
                             rows={5}
                             required
-                        /> 
+                        />
                         <label htmlFor="descricao">Descrição</label>
                     </FloatLabel>
                 </div>

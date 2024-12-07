@@ -51,7 +51,7 @@ function Header() {
 
                 <div className="menu">
                     <Link className='link-sobre' to="/sobre">Sobre</Link>
-                    <Link className='link-catalago' to="/catalago">Catalago</Link>
+                    <Link className='link-catalogo' to="/catalogo">Catalogo</Link>
 
                 </div>
 

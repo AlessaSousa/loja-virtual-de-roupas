@@ -34,7 +34,7 @@ function Login() {
         e.preventDefault();
         try {
             const response = await api.post('/usuarios/login', 
-                JSON.stringify({email, senha: senha}),
+                ({email, senha: senha}),
                 {
                     headers: {'Content-Type': 'application/json'},
                     withCredentials: true
