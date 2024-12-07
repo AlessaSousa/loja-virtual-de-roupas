@@ -6,24 +6,28 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { TreeSelect } from 'primereact/treeselect';
 import { InputNumber } from 'primereact/inputnumber';
 import { RadioButton } from 'primereact/radiobutton';
+import api from "../../../api/axios";
+import { Link } from "react-router-dom";
 
 const Management = () => {
     const [formData, setFormData] = useState({
         nome: "",
         descricao: "",
-        categoria: ['Calças, Camisas', 'Sobretudos',
-            'Masculino', 'Esporte', 'Infantil',
-            'Feminino'],
-        tamanho: ['PP', 'P', 'M', 'G', 'GG', 'XG'],
-        estado: ['Novo', 'Usado', 'Levemente usado'],
+        categoria: "",
+        tamanho: "",
+        estado: "",
         marca: "",
-        preco: "",
+        preco: null,
         doacao: false,
         localizacao: "",
-        quantidade: 0,
+        quantidade: null,
         tags: "",
         fotos: [],
     });
+
+    const categorias = ['Calças', 'Camisas', 'Sobretudos', 'Masculino', 'Esporte', 'Infantil', 'Feminino'];
+    const tamanhos = ['PP', 'P', 'M', 'G', 'GG', 'XG'];
+    const estados = ['Novo', 'Usado', 'Levemente usado'];
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -37,136 +41,180 @@ const Management = () => {
         setFormData({ ...formData, fotos: Array.from(e.target.files) });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form Data Submitted:", formData);
+        try {
+            const payload = { ...formData, fotos: formData.fotos.map(file => file.name) };
+            const response = await api.post('/produtos', payload);
+            alert("Produto adicionado com sucesso!");
+            console.log("Response:", response.data);
+        } catch (error) {
+            console.error("Erro ao adicionar produto:", error);
+            alert("Erro ao adicionar produto. Tente novamente.");
+        }
     };
 
     return (
         <div className="container-management">
             <form className="form-management" onSubmit={handleSubmit}>
+                <div className="back-button-container">
+                    <Link to="../" className="back-button">
+                        &lt; Voltar
+                    </Link>
+                </div>
                 <h2>Adicionar Produto</h2>
 
-                <div className="margin-between">
-                    {/* <label>Fotos</label>
-                    <input
-                        type="file"
-                        name="fotos"
-                        onChange={handleFileChange}
-                        multiple
-                        accept="image/*"
-                    /> */}
-                    <div class="flex align-content-center justify-content-center">
-                        <div class="photoDialog flex align-items-center justify-content-center">
-                            <img src=""></img>
-                        </div>
+                <div className="image-upload">
+                    <div className="photoDialog">
+                        {formData.fotos.length > 0 ? (
+                            <img src={URL.createObjectURL(formData.fotos[0])} alt="Produto" />
+                        ) : (
+                            <span>Selecione uma imagem</span>
+                        )}
                     </div>
-                    <div class="input-file flex m-2">
-                        <label class="flex w-full justify-content-center align-content-center" for="selecao-doc"><i
-                            class="pi pi-pencil flex w-full align-items-center justify-content-center"></i></label>
-                        <input id="selecao-doc" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" value=""
-                            onChange={handleFileChange}/>
+                    <div className="input-file">
+                        <label htmlFor="selecao-doc">
+                            <i className="pi pi-pencil"></i> Selecione Imagem
+                        </label>
+                        <input
+                            id="selecao-doc"
+                            type="file"
+                            accept="image/png, image/jpeg, image/jpg, image/gif"
+                            onChange={handleFileChange}
+                            multiple
+                        />
                     </div>
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
                     <FloatLabel>
-                        <InputText id="floatLabel" type="text"
+                        <InputText
+                            id="input"
                             name="nome"
                             value={formData.nome}
                             onChange={handleChange}
-                            required />
-                        <label htmlFor="username">Nome da Roupa</label>
+                            required
+                        />
+                        <label htmlFor="nome">Nome da Roupa</label>
                     </FloatLabel>
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
                     <FloatLabel>
-                        <InputTextarea id="floatLabel-textarea" autoResize name="descricao"
+                        <InputTextarea
+                            id="input-textarea"
+                            name="descricao"
                             value={formData.descricao}
                             onChange={handleChange}
-                            required
                             rows={5}
-                            cols={30} />
-                        <label htmlFor="username">Descrição</label>
+                            required
+                        />
+                        <label htmlFor="descricao">Descrição</label>
                     </FloatLabel>
                 </div>
 
-                <div className="card flex justify-content-center margin-between">
-                    <TreeSelect value={formData.categoria}
+                <div className="input-group">
+                    <TreeSelect
+                        name="categoria"
+                        value={formData.categoria}
                         onChange={handleChange}
-                        required
                         placeholder="Categoria"
-                        options={formData.categoria}>
-                    </TreeSelect>
+                        options={categorias.map(c => ({ label: c, value: c }))}
+                        required
+                    />
                 </div>
 
-                <div className="card flex justify-content-center margin-between">
-                    <TreeSelect value={formData.tamanho}
+                <div className="input-group">
+                    <TreeSelect
+                        name="tamanho"
+                        value={formData.tamanho}
                         onChange={handleChange}
-                        required
                         placeholder="Tamanho"
-                        options={formData.tamanho}>
-                    </TreeSelect>
-                </div>
-
-                <div className="card flex justify-content-center margin-between">
-                    <TreeSelect value={formData.estado}
-                        onChange={handleChange}
+                        options={tamanhos.map(t => ({ label: t, value: t }))}
                         required
-                        placeholder="Estado de Conservação"
-                        options={formData.estado}>
-                    </TreeSelect>
+                    />
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
+                    <TreeSelect
+                        name="estado"
+                        value={formData.estado}
+                        onChange={handleChange}
+                        placeholder="Estado de Conservação"
+                        options={estados.map(e => ({ label: e, value: e }))}
+                        required
+                    />
+                </div>
+
+                <div className="input-group">
                     <FloatLabel>
-                        <InputText id="floatLabel" type="text"
+                        <InputText
+                            id="input"
                             name="marca"
                             value={formData.marca}
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                         <label htmlFor="marca">Marca</label>
                     </FloatLabel>
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
                     <FloatLabel>
-                        <InputText id="number-input"
+                        <InputNumber
+                            id="input"
+                            name="preco"
                             value={formData.preco}
-                            onValueChange={handleChange} />
-                        <label htmlFor="number-input">Preço</label>
+                            onValueChange={(e) => setFormData({ ...formData, preco: e.value })}
+                            mode="currency"
+                            currency="BRL"
+                            required
+                        />
+                        <label htmlFor="preco">Preço</label>
                     </FloatLabel>
                 </div>
 
-                <div className="flex align-items-center margin-between">
-                    <RadioButton inputId="doacao" name="pizza" value={formData.doacao} checked={formData.doacao}
-                        onChange={handleChange} />
-                    <label htmlFor="doacao" className="ml-2">Disponível para doação ?</label>
+                <div className="input-group">
+                    <div className="flex align-items-center">
+                        <RadioButton
+                            inputId="doacao"
+                            id="input"
+                            name="doacao"
+                            value={true}
+                            checked={formData.doacao}
+                            onChange={(e) => setFormData({ ...formData, doacao: e.value })}
+                        />
+                        <label htmlFor="doacao" className="ml-2">Disponível para doação?</label>
+                    </div>
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
                     <FloatLabel>
-                        <InputText id="floatLabel" type="text"
+                        <InputText
+                            id="input"
                             name="localizacao"
                             value={formData.localizacao}
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                         <label htmlFor="localizacao">Localização</label>
                     </FloatLabel>
                 </div>
 
-                <div className="margin-between">
+                <div className="input-group">
                     <FloatLabel>
-                        <InputNumber id="number-input"
+                        <InputNumber
+                            id="input"
+                            name="quantidade"
                             value={formData.quantidade}
-                            onValueChange={handleChange} />
-                        <label htmlFor="number-input">Quantidade</label>
+                            onValueChange={(e) => setFormData({ ...formData, quantidade: e.value })}
+                            required
+                        />
+                        <label htmlFor="quantidade">Quantidade</label>
                     </FloatLabel>
                 </div>
 
-
-                <div className="btn-cad-produto margin-between">
+                <div className="btn-cad-produto">
                     <button type="submit">Cadastrar</button>
                 </div>
             </form>

@@ -68,19 +68,20 @@ const InfPessoais = () => {
   };
 
   return (
-    <div className="infPessoais">
-      <div className="profile-header">
-        <div className="profile-photo" onClick={handleFotoChange}>
-          <img
-            src={user.foto || "https://via.placeholder.com/150"}
-            alt="Foto do usuário"
-            className="photo"
-          />
-          <a className="alterar-foto" href="#alterar">
-            alterar
-          </a>
-        </div>
-        <h2 className="greeting">Olá, {user.nome}!</h2>
+    <form className='form-inf-pessoais' onSubmit={handleSubmit}>
+      <h1>Suas Informações</h1>
+      
+      <div className="profile-photo">
+        <label htmlFor="fotoPerfil">
+          <div className="photo-preview">
+            {fotoPerfil ? (
+              <img src={fotoPerfil} alt="Foto de perfil" />
+            ) : (
+              <span>Alterar</span>
+            )}
+          </div>
+        </label>
+        <input type="file" id="fotoPerfil" onChange={handlePhotoChange} accept="image/*" style={{ display: 'none' }} />
       </div>
 
       <div className="profile-info">

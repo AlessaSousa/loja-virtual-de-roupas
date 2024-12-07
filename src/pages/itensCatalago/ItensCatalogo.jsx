@@ -13,12 +13,14 @@ import JaquetaCouro from '../../assets/png/jaqueta-couro.png';
 import './ItensCatalogo.css';
 import { useNavigate } from 'react-router-dom';
 import { useCarrinho } from '../../context/carrinhoContext';
+import { useState } from 'react';
 
 
 function ItensCatalogo({ selectedCategory }) {
-
   const { adicionarAoCarrinho } = useCarrinho();
   const navigate = useNavigate();
+  const [clickedItem, setClickedItem] = useState(null);
+
   const roupas = [
     { id: 1, img: calcaAlfaiataria, title: 'Conjunto paletó e calça', value: 45.00, category: 'Calças' },
     { id: 2, img: camisaMasculina, title: 'Camisa oversize branca', value: 45.00, category: 'Camisas' },
@@ -37,6 +39,14 @@ function ItensCatalogo({ selectedCategory }) {
   // Filtra os itens com base na categoria selecionada
   const filteredRoupas = selectedCategory ? roupas.filter(item => item.category === selectedCategory) : roupas;
 
+  const handleAddToCart = (item) => {
+    setClickedItem(item.id);
+    adicionarAoCarrinho(item);
+
+    setTimeout(() => {
+      setClickedItem(null);
+    }, 500);
+  };
 
   const comprarAgora = (item) => {
     adicionarAoCarrinho(item);
@@ -44,17 +54,18 @@ function ItensCatalogo({ selectedCategory }) {
   }
   
   return (
-    <div className="container-cards-catalago">
+    <div className="container-cards-catalogo">
       {filteredRoupas.map((item, index) => (
-        <div key={index} className='cards-catalago'>
-          <img className='image-cards-catalago' src={item.img} alt={item.title} />
-          <p className='text-catalago'>{item.title}</p>
+        <div key={index} className='cards-catalogo'>
+          <img className='image-cards-catalogo' src={item.img} alt={item.title} />
+          <p className='text-catalogo'>{item.title}</p>
           <div className='value-button'>
-            <p className='text-catalago'>R$ {item.value.toFixed(2)}</p>
-            <i className="bi bi-bag pointer"
-              onClick={() => adicionarAoCarrinho(item)}
-              title="Adicionar ao Carrinho">
-            </i>
+            <p className='text-catalogo'>R$ {item.value.toFixed(2)}</p>
+            <i
+              className={`bi bi-bag  ${clickedItem === item.id ? 'animate-icon' : ''}`}
+              onClick={() => handleAddToCart(item)}
+              title="Adicionar ao Carrinho"
+            ></i>
             <button className="button-buy"
               onClick={() => comprarAgora(item)} >
               Comprar

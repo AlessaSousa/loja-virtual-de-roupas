@@ -1,11 +1,12 @@
-const usuarios = require('../models/usuarios')
+const {Usuarios} = require('../models')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 module.exports = class UsuariosController {
     static async showAll (req, res) {
         try {
-            const allUsuarios = await usuarios.findAll()
+            const allUsuarios = await Usuarios.findAll()
             res.status(200).send(allUsuarios)
         } catch (error) {
             res.status(500).send({ error: 'Erro ao buscar todos os usuários' })
@@ -14,7 +15,7 @@ module.exports = class UsuariosController {
 
     static async showOne (req, res) {
         try {
-            const usuario = await usuarios.findByPk(req.params.id)
+            const usuario = await Usuarios.findByPk(req.params.id)
             if (usuario) {
                 res.status(200).send(usuario)
             } else {
@@ -29,7 +30,7 @@ module.exports = class UsuariosController {
         const { nome, email, senha } = req.body;
         
         // Verificar se o usuário já existe
-        const userExists = await usuarios.findOne({  where: { email: email } });
+        const userExists = await Usuarios.findOne({  where: { email: email } });
         if (userExists) {
             return res.status(400).json({ message: 'Usuário já existe!' });
         }
@@ -38,7 +39,7 @@ module.exports = class UsuariosController {
         const hashedPassword = await bcrypt.hash(senha, 10);
 
         // Criar novo usuário
-        const newUser = await usuarios.create({
+        const newUser = await Usuarios.create({
             nome,
             email,
             senha: hashedPassword
@@ -53,8 +54,8 @@ module.exports = class UsuariosController {
     }
 
     static async update(req, res) {
-        const user = await usuarios.findByPk(req.params.id)
-        const result = await usuarios.update(
+        const user = await Usuarios.findByPk(req.params.id)
+        const result = await Usuarios.update(
             {
                 nome: req.body.nome,
                 email: req.body.email,
@@ -74,7 +75,7 @@ module.exports = class UsuariosController {
 
     static async delete (req, res) {
         try {
-            const usuario = await usuarios.findByPk(req.params.id)
+            const usuario = await Usuarios.findByPk(req.params.id)
             if (usuario) {
                 await usuario.destroy()
                 res.status(200).send({ success: true })
@@ -94,7 +95,7 @@ module.exports = class UsuariosController {
         }
     
         try {
-            const user = await usuarios.findOne({ where: { email } });
+            const user = await Usuarios.findOne({ where: { email } });
             if (!user || !user.senha) {
                 return res.status(401).json({ message: 'Usuário não encontrado' });
             }
@@ -102,9 +103,16 @@ module.exports = class UsuariosController {
             if (!isPasswordValid) {
                 return res.status(401).json({ message: 'Usuário ou senha incorretos' });
             }
+
+            const token = jwt.sign(
+                { id: user.id, email: user.email },
+                process.env.JWT_SECRET,
+                { expiresIn: '1h' }
+            );
     
             return res.status(200).json({
                 message: 'Login realizado com sucesso',
+                accessToken: token
             });
     
         } catch (error) {

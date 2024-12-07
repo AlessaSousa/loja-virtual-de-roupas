@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import api from '../../api/axios';
+import { getToken } from '../../api/token';
 import { useUser } from "../../context/userContext";
 import { Link, useNavigate } from "react-router-dom"; // Importando useNavigate
 import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
+  api.get(`/private/user`, {
+    headers: {
+      Authorization: `Bearer ${getToken}`
+    }
+  }).then(response => {
+    console.log(response.data.message);
+  })
+  .catch(error => {
+      console.error('Protected route error:', error.response?.data || error.message);
+  });
   const { user, setUser } = useUser();
   const [activeTab, setActiveTab] = useState("overview");
   const navigate = useNavigate(); // Hook para navegação
@@ -61,7 +73,7 @@ const Profile = () => {
               </div>
               <div className="option-container">
                 <div className="option"> {/* A caixa em si */} </div>
-                <div className="option-label"><Link className="link-management" to='/src/pages/profile/management'>Gerenciamento de produtos</Link></div>
+                <div className="option-label"><Link className="link-management" to='../management'>Gerenciamento de produtos</Link></div>
               </div>
               <div className="option-container">
                 <div className="option" />

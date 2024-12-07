@@ -32,17 +32,28 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const token = localStorage.getItem('authToken');
+
         try {
-            const response = await api.post('/usuarios/login', 
+            const response = await api.post('/public/login', 
                 JSON.stringify({email, senha: senha}),
                 {
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json',  'Authorization': `Bearer ${token}`},
                     withCredentials: true
                 }
-            );
+            ).then(response => {
+                const token = response.data.accessToken;
+                localStorage.setItem('authToken', token);
+                console.log('Token:', token);
+            })
+            .catch(error => {
+                console.error('Login error:', error.response?.data || error.message);
+            });
             
             const accessToken = response?.data?.accessToken;
             const roles = response?.data.roles;
+
             setAuth({email, senha: senha, roles, accessToken});
             setEmail('');
             setPassword('');
@@ -50,6 +61,7 @@ function Login() {
             navigate('/'); 
         } catch (error) {
             if (!error?.response) {
+                console.log(error);
                 setErrMessage('No server response');
             } else if (error.response?.status === 400) {
                 setErrMessage('Missing Email or Password');
@@ -96,6 +108,11 @@ function Login() {
         <>
             <p ref={errRef} className={errMessage ? "errmsg" : "offscreen"} style={{margin:0}} aria-live='assertive'>{errMessage}</p><div className='container-register'>
             <div className='form'>
+            <div className="back-button-container">
+                        <Link to="/" className="back-button">
+                            &lt; Voltar
+                        </Link>
+                    </div>
                 <h2>Bem vindo de volta</h2>
                 <p className='text-entrar'>Entrar em sua conta</p>
                 <form onSubmit={handleSubmit}>
