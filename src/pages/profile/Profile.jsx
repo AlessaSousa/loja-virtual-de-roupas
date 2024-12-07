@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import api from '../../api/axios';
+import { getToken } from '../../api/token';
 import { useUser } from "../../context/userContext";
 import { Link, useNavigate } from "react-router-dom"; // Importando useNavigate
 import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
+  api.get(`/private/user`, {
+    headers: {
+      Authorization: `Bearer ${getToken}`
+    }
+  }).then(response => {
+    console.log(response.data.message);
+  })
+  .catch(error => {
+      console.error('Protected route error:', error.response?.data || error.message);
+  });
   const { user, setUser } = useUser();
   const [activeTab, setActiveTab] = useState("overview");
   const navigate = useNavigate(); // Hook para navegação

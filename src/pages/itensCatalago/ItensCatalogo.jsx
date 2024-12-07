@@ -17,7 +17,6 @@ import { useState } from 'react';
 
 
 function ItensCatalogo({ selectedCategory }) {
-
   const { adicionarAoCarrinho } = useCarrinho();
   const navigate = useNavigate();
   const [clickedItem, setClickedItem] = useState(null);

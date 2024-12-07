@@ -32,17 +32,17 @@ function Register() {
             senha,
         };
 
-        api.post('/usuarios', payload)
-            .then(response => {
-                alert("Dados enviados com sucesso!");
-                console.log(response.data);
-                navigate('/login');
-            })
-            .catch(error => {
-                alert("Erro ao cadastrar");
-                console.error("Erro ao cadastrar: ", error);
-            });
-    };
+    api.post('/public/signin', payload) 
+    .then(response => {
+        alert("Dados enviado com sucesso!")
+        console.log(response.data);
+        navigate('/login');
+    })
+    .catch(error => {
+        alert("Erro ao cadastrar")
+        console.error("erro ao cadastrar: ", error);
+    });
+};
 
     const handleGoogleLoginSuccess = (response) => {
         console.log("Google login successful:", response);
