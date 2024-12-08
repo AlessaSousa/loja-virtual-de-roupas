@@ -1,4 +1,7 @@
 'use strict';
+
+const { DataTypes } = require('sequelize');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,6 +12,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      itens: {
+        type: Sequelize.JSON,
+        allowNull: false
+      },
       quantidade: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -18,6 +25,35 @@ module.exports = {
         allowNull: false,
         defaultValue: 'não'
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Usuarios',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+      }, 
+      carrinhoId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Carrinho',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+      },
+      statusPagamento: {
+        type: Sequelize.ENUM('Pendente', 'Aprovado', 'Recusado'),
+        allowNull: false,
+        defaultValue: 'Pendente'
+      },
+      statusEntrega: {
+        type: Sequelize.ENUM('Preparando pedido', 'Pacote coletado para envio', 'Em trânsito',
+          'Em rota de entrega', 'Entregue', 'Taxado pelo Haddad', 'Preso em Curitiba'),
+          allowNull: false,
+          defaultValue: 'Preparando pedido',
+      }, 
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

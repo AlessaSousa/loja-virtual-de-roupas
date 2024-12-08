@@ -9,6 +9,7 @@ import api from '../../api/axios';
 import clientId from '../../clienteID/clienteID';
 import { jwtDecode } from 'jwt-decode';
 import { useUser } from '../../context/userContext';
+import { setToken } from '../../api/token';
 
 function Login() {
     const { setAuth } = useContext(AuthContext);
@@ -33,32 +34,28 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('authToken');
-
         try {
             const response = await api.post('/public/login', 
                 JSON.stringify({email, senha: senha}),
                 {
-                    headers: {'Content-Type': 'application/json',  'Authorization': `Bearer ${token}`},
+                    headers: {'Content-Type': 'application/json'},
                     withCredentials: true
                 }
-            ).then(response => {
-                const token = response.data.accessToken;
-                localStorage.setItem('authToken', token);
-                console.log('Token:', token);
-            })
-            .catch(error => {
-                console.error('Login error:', error.response?.data || error.message);
-            });
+            )
             
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data.roles;
-
-            setAuth({email, senha: senha, roles, accessToken});
-            setEmail('');
-            setPassword('');
-            setSuccess(true);
-            navigate('/'); 
+            const { accessToken, user } = response.data
+            console.log(response.data);
+            if (accessToken) {
+                setToken(accessToken)
+                setAuth({email, senha: senha, accessToken})
+                setUser({name: response.data.nome})
+                setEmail('');
+                setPassword('');
+                setSuccess(true);
+                navigate('/');
+            } else {
+                console.error('Sem token');
+            }
         } catch (error) {
             if (!error?.response) {
                 console.log(error);

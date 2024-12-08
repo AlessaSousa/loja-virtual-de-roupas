@@ -16,6 +16,7 @@ const verifyToken = (req, res, next) => {
         console.log(req.headers)
         const decoded = jwt.verify(token, secret)
         req.user = decoded
+        console.log("Decoded token:",req.user)
         next()
     } catch (error) {
         console.log(req.headers)

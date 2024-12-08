@@ -15,7 +15,10 @@ module.exports = class UsuariosController {
 
     static async showOne (req, res) {
         try {
-            const usuario = await Usuarios.findByPk(req.params.id)
+            const userID = req.user.id
+            if(!userID) return res.status(400).send({error: 'ID não fornecido'})
+            const usuario = await Usuarios.findByPk(userID)
+        
             if (usuario) {
                 res.status(200).send(usuario)
             } else {
@@ -105,14 +108,16 @@ module.exports = class UsuariosController {
             }
 
             const token = jwt.sign(
-                { id: user.id, email: user.email },
+                { id: user.id },
                 process.env.JWT_SECRET,
                 { expiresIn: '1h' }
             );
     
             return res.status(200).json({
                 message: 'Login realizado com sucesso',
-                accessToken: token
+                accessToken: token,
+                id: user.id,
+                nome: user.nome
             });
     
         } catch (error) {

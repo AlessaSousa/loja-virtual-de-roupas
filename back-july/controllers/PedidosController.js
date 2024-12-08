@@ -1,4 +1,4 @@
-const pedidos = require('../models/pedidos')
+const {Pedidos} = require('../models')
 require('dotenv').config()
 
 module.exports = class PedidosController {
@@ -15,8 +15,8 @@ module.exports = class PedidosController {
 
     static async pedidos(req, res) {
         try {
-            const pedidos = await pedidos.findAll({});
-            res.json(pedidos);
+            const pedidos = await Pedidos.findAll({});
+            res.status(200).send(pedidos)
         } catch (error) {
             res.status(500).json({ error: error.message });
         }

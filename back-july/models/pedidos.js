@@ -10,10 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Pedidos.hasMany(models.Carrinho, { foreignKey: 'pedidoId', onDelete: 'CASCADE' });
+      Pedidos.belongsTo(models.Usuarios, { foreignKey: 'userId', onDelete: 'CASCADE' });
+      Pedidos.hasOne(models.Pagamentos, { foreignKey: 'pedidoId', onDelete: 'SET NULL' });
     }
   }
   Pedidos.init({
+    itens: DataTypes.JSON,
     quantidade: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -22,6 +25,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('sim','não'),
       allowNull: false,
       defaultValue: 'não',
+    },
+    statusPagamento: {
+      type: DataTypes.ENUM('Pendente', 'Aprovado', 'Recusado'),
+      allowNull: false,
+      defaultValue: 'Pendente'
+    },
+    statusEntrega: {
+      type: DataTypes.ENUM('Preparando pedido', 'Pacote coletado para envio', 'Em trânsito',
+        'Em rota de entrega', 'Entregue', 'Taxado pelo Haddad', 'Preso em Curitiba'),
+        allowNull: false,
+        defaultValue: 'Preparando pedido',
     } 
   }, {
     sequelize,

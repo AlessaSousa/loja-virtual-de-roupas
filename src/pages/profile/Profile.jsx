@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import api from '../../api/axios';
-import { getToken } from '../../api/token';
+import { clearToken, getToken } from '../../api/token';
 import { useUser } from "../../context/userContext";
 import { Link, useNavigate } from "react-router-dom"; // Importando useNavigate
 import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
+  console.log('Auth Header:', `Bearer ${getToken()}`)
   api.get(`/private/user`, {
     headers: {
-      Authorization: `Bearer ${getToken}`
+      Authorization: `Bearer ${getToken()}`
     }
   }).then(response => {
     console.log(response.data.message);
@@ -22,6 +23,7 @@ const Profile = () => {
   const navigate = useNavigate(); // Hook para navegação
 
   const handleLogout = () => {
+    clearToken(getToken())
     setUser(null); // Desloga o usuário
   };
 

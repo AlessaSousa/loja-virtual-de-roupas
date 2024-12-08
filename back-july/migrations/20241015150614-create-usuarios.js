@@ -21,7 +21,7 @@ module.exports = {
       telefone: {
         type: Sequelize.STRING
       },
-      cep: {
+      endereco: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -10,7 +10,7 @@ router.post('/signin', UsuariosController.create)
 router.post('/login', UsuariosController.login)
 
 //Mostrar todos os produtos
-router.get('/items', ProdutosController.produto)
+router.get('/items', ProdutosController.produtos)
 
 //No caso de rota não encontrada, retornar erro 404
 router.use((req, res, next) =>{

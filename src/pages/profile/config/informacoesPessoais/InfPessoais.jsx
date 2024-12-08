@@ -176,7 +176,7 @@ const InfPessoais = () => {
           Alterar
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 
