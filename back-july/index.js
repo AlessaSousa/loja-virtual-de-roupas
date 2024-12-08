@@ -1,4 +1,5 @@
 const express = require('express');
+const { swaggerUi, swaggerDocs } = require('./swagger');
 const cors = require('cors');
 const app = express()
 const corsOptions = {
@@ -6,7 +7,7 @@ const corsOptions = {
     credentials: true,
     allowedHeaders: 'Content-Type, Authorization'        
 };
-
+app.use('/api-trendix', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(cors(corsOptions));
 const publicRouter = require('./routes/public')
 const privateRouter = require('./routes/private')
