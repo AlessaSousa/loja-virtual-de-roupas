@@ -14,20 +14,15 @@ const Management = () => {
         nome: "",
         descricao: "",
         categoria: "",
-        tamanho: "",
-        estado: "",
-        marca: "",
+        // tamanho: "",
         preco: null,
-        doacao: false,
-        localizacao: "",
-        quantidade: null,
-        tags: "",
-        fotos: [],
+        // doacao: false,
+        // quantidade: null,
+        // fotos: [],
     });
 
     const categorias = ['Calças', 'Camisas', 'Sobretudos', 'Masculino', 'Esporte', 'Infantil', 'Feminino'];
     const tamanhos = ['PP', 'P', 'M', 'G', 'GG', 'XG'];
-    const estados = ['Novo', 'Usado', 'Levemente usado'];
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -43,9 +38,17 @@ const Management = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const token = localStorage.getItem('authToken')
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        };
         try {
-            const payload = { ...formData, fotos: formData.fotos.map(file => file.name) };
-            const response = await api.post('/produtos', payload);
+            // const payload = { ...formData, fotos: formData.fotos.map(file => file.name) };
+            const response = await api.post('/private/item', formData, config);
             alert("Produto adicionado com sucesso!");
             console.log("Response:", response.data);
         } catch (error) {
@@ -64,7 +67,7 @@ const Management = () => {
                 </div>
                 <h2>Adicionar Produto</h2>
 
-                <div className="image-upload">
+                {/* <div className="image-upload">
                     <div className="photoDialog">
                         {formData.fotos.length > 0 ? (
                             <img src={URL.createObjectURL(formData.fotos[0])} alt="Produto" />
@@ -84,7 +87,7 @@ const Management = () => {
                             multiple
                         />
                     </div>
-                </div>
+                </div> */}
 
                 <div className="input-group">
                     <FloatLabel>
@@ -119,7 +122,7 @@ const Management = () => {
                         value={formData.categoria}
                         onChange={handleChange}
                         placeholder="Categoria"
-                        options={categorias.map(c => ({ label: c, value: c }))}
+                        options={categorias}
                         required
                     />
                 </div>
@@ -131,32 +134,8 @@ const Management = () => {
                         onChange={handleChange}
                         placeholder="Tamanho"
                         options={tamanhos.map(t => ({ label: t, value: t }))}
-                        required
+                        // required
                     />
-                </div>
-
-                <div className="input-group">
-                    <TreeSelect
-                        name="estado"
-                        value={formData.estado}
-                        onChange={handleChange}
-                        placeholder="Estado de Conservação"
-                        options={estados.map(e => ({ label: e, value: e }))}
-                        required
-                    />
-                </div>
-
-                <div className="input-group">
-                    <FloatLabel>
-                        <InputText
-                            id="input"
-                            name="marca"
-                            value={formData.marca}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label htmlFor="marca">Marca</label>
-                    </FloatLabel>
                 </div>
 
                 <div className="input-group">
@@ -168,7 +147,9 @@ const Management = () => {
                             onValueChange={(e) => setFormData({ ...formData, preco: e.value })}
                             mode="currency"
                             currency="BRL"
-                            required
+                            disabled={formData.doacao} 
+                            // required={!formData.doacao}
+                            className={formData.doacao ? 'input-number-disabled' : ''}
                         />
                         <label htmlFor="preco">Preço</label>
                     </FloatLabel>
@@ -182,23 +163,10 @@ const Management = () => {
                             name="doacao"
                             value={true}
                             checked={formData.doacao}
-                            onChange={(e) => setFormData({ ...formData, doacao: e.value })}
+                            onChange={(e) => setFormData({ ...formData, doacao: e.value, preco: null })}
                         />
                         <label htmlFor="doacao" className="ml-2">Disponível para doação?</label>
                     </div>
-                </div>
-
-                <div className="input-group">
-                    <FloatLabel>
-                        <InputText
-                            id="input"
-                            name="localizacao"
-                            value={formData.localizacao}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label htmlFor="localizacao">Localização</label>
-                    </FloatLabel>
                 </div>
 
                 <div className="input-group">
@@ -208,7 +176,7 @@ const Management = () => {
                             name="quantidade"
                             value={formData.quantidade}
                             onValueChange={(e) => setFormData({ ...formData, quantidade: e.value })}
-                            required
+                            // required
                         />
                         <label htmlFor="quantidade">Quantidade</label>
                     </FloatLabel>

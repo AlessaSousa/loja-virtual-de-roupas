@@ -55,6 +55,8 @@ function Login() {
             const roles = response?.data.roles;
 
             setAuth({email, senha: senha, roles, accessToken});
+            setUser({ name: email });
+
             setEmail('');
             setPassword('');
             setSuccess(true);

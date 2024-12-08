@@ -1,0 +1,36 @@
+
+.container-resume-pedido {
+    padding: 4rem;
+}
+.container-dados{
+    width: 100%;
+    height: auto;
+    background: #A1D6B2;
+    border-radius: 25px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+}
+.line {
+    border: 1px solid black;
+    width: 100%;
+}
+.dados {
+    background: #8E8D8C;
+    width: 100%;
+    border-radius: 30px;
+    color: white;
+    margin: 1.5rem 0;
+}
+.item-img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#badge {
+    position: absolute;
+    top: -15%;
+    left: 82%;
+    background: #404040;
+}

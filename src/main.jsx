@@ -10,6 +10,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'primeflex/primeflex.css';
 import { AuthProvider } from './context/authProvider';
 
 import { PrimeReactProvider } from 'primereact/api';

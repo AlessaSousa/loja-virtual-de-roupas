@@ -7,23 +7,26 @@ import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
-  api.get(`/private/user`, {
-    headers: {
-      Authorization: `Bearer ${getToken}`
-    }
-  }).then(response => {
-    console.log(response.data.message);
-  })
-  .catch(error => {
-      console.error('Protected route error:', error.response?.data || error.message);
-  });
+  // api.get(`/private/user`, {
+  //   headers: {
+  //     Authorization: `Bearer ${getToken}`
+  //   }
+  // }).then(response => {
+  //   console.log(response.data.message);
+  // })
+  // .catch(error => {
+  //     console.error('Protected route error:', error.response?.data || error.message);
+  // });
   const { user, setUser } = useUser();
   const [activeTab, setActiveTab] = useState("overview");
   const navigate = useNavigate(); // Hook para navegação
 
   const handleLogout = () => {
-    setUser(null); // Desloga o usuário
-  };
+    setUser(null);
+    localStorage.removeItem('authToken');
+    navigate('/login');
+};
+
 
   const handleGerenteProdutos = () => {
     navigate("/profile/anuncios/Anuncios.jsx"); // Redireciona para anúncios
