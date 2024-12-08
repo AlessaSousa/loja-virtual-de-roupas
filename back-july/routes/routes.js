@@ -1,10 +1,11 @@
 const express = require('express');
-const PedidosController = require('../controllers/PedidosController');
 const ProdutosController = require('../controllers/ProdutosController');
 const UsuariosController = require('../controllers/UsuariosController');
+const PedidosController = require('../controllers/PedidosController.js')
 const verifyToken = require("../middleware/auth");
 const { verify } = require('jsonwebtoken');
 const router = express.Router();
+
 
 /**
  * @swagger
@@ -73,6 +74,102 @@ router.get('/users', verifyToken, UsuariosController.showAll);
  *         description: Usuário não encontrado
  */
 router.get('/user', verifyToken, UsuariosController.showOne);
+/**
+ * @swagger
+ * tags:
+ *   - name: Users
+ *     description: Operações relacionadas a usuários
+ */
+
+/**
+ * @swagger
+ * /signin:
+ *   post:
+ *     tags: [Users]
+ *     summary: Cadastrar um novo usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuário criado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ */
+router.post('/signin', UsuariosController.create);
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     tags: [Users]
+ *     summary: Login de usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login bem-sucedido
+ *       401:
+ *         description: Credenciais inválidas
+ */
+router.post('/login', UsuariosController.login);
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Products
+ *     description: Operações relacionadas a produtos
+ */
+
+/**
+ * @swagger
+ * /items:
+ *   get:
+ *     tags: [Products]
+ *     summary: Retorna todos os produtos
+ *     responses:
+ *       200:
+ *         description: Lista de produtos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ *                   price:
+ *                     type: number
+ *                     format: float
+ *                   quantity:
+ *                     type: integer
+ */
+router.get('/items', ProdutosController.produto);
+
+
+
 
 /**
  * @swagger
@@ -131,6 +228,13 @@ router.post('/item', verifyToken, ProdutosController.cadastrarProduto);
  *                     format: float
  */
 router.get("/orders", verifyToken, PedidosController.pedidos);
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Orders
+ *     description: Operações relacionadas a pedidos
+ */
 
 /**
  * @swagger

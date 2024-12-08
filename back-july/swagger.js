@@ -24,7 +24,7 @@ const swaggerOptions = {
         },
       ],
       servers: [
-        { url: `http://localhost:3001`, description: 'Servidor Local' },
+        { url: `http://localhost:3001/routes`, description: 'Servidor Local' },
       ],
     },
     apis: ['./routes/*.js'],  // Caminho para as rotas
