@@ -34,7 +34,7 @@ const router = express.Router();
  *                 properties:
  *                   id:
  *                     type: integer
- *                   name:
+ *                   nome:
  *                     type: string
  *                   email:
  *                     type: string
@@ -66,7 +66,7 @@ router.get('/users', verifyToken, UsuariosController.showAll);
  *               properties:
  *                 id:
  *                   type: integer
- *                 name:
+ *                 nome:
  *                   type: string
  *                 email:
  *                   type: string
@@ -94,11 +94,11 @@ router.get('/user', verifyToken, UsuariosController.showOne);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               nome:
  *                 type: string
  *               email:
  *                 type: string
- *               password:
+ *               senha:
  *                 type: string
  *     responses:
  *       201:
@@ -123,7 +123,7 @@ router.post('/signin', UsuariosController.create);
  *             properties:
  *               email:
  *                 type: string
- *               password:
+ *               senha:
  *                 type: string
  *     responses:
  *       200:
@@ -158,18 +158,17 @@ router.post('/login', UsuariosController.login);
  *                 properties:
  *                   id:
  *                     type: integer
- *                   name:
+ *                   nome:
  *                     type: string
- *                   price:
+ *                   preco:
  *                     type: number
  *                     format: float
- *                   quantity:
- *                     type: integer
+ *                   categoria:
+ *                     type: string
+ *                   descricao:
+ *                     type: string
  */
 router.get('/items', ProdutosController.produto);
-
-
-
 
 /**
  * @swagger
@@ -186,13 +185,15 @@ router.get('/items', ProdutosController.produto);
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *                 format: float
- *               quantity:
- *                 type: integer
+ *                   nome:
+ *                     type: string
+ *                   preco:
+ *                     type: number
+ *                     format: float
+ *                   categoria:
+ *                     type: string
+ *                   descricao:
+ *                     type: string
  *     responses:
  *       201:
  *         description: Produto registrado com sucesso
@@ -221,11 +222,10 @@ router.post('/item', verifyToken, ProdutosController.cadastrarProduto);
  *                 properties:
  *                   id:
  *                     type: integer
- *                   status:
- *                     type: string
- *                   total:
- *                     type: number
- *                     format: float
+ *                   quantidade:
+ *                     type: integer
+ *                   doacao:
+ *                     type: boolean
  */
 router.get("/orders", verifyToken, PedidosController.pedidos);
 
@@ -251,12 +251,10 @@ router.get("/orders", verifyToken, PedidosController.pedidos);
  *           schema:
  *             type: object
  *             properties:
- *               productId:
- *                 type: integer
- *               quantity:
- *                 type: integer
- *               address:
- *                 type: string
+ *                   quantidade:
+ *                     type: integer
+ *                   doacao:
+ *                     type: boolean
  *     responses:
  *       201:
  *         description: Pedido criado com sucesso

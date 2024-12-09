@@ -7,7 +7,7 @@ import Config from "./config/Config";
 import "./Profile.css";
 
 const Profile = () => {
-  // api.get(`/private/user`, {
+  // api.get(`/routes/user`, {
   //   headers: {
   //     Authorization: `Bearer ${getToken}`
   //   }
