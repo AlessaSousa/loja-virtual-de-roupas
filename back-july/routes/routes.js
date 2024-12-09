@@ -66,7 +66,7 @@ router.get('/users', verifyToken, UsuariosController.showAll);
  *               properties:
  *                 id:
  *                   type: integer
- *                 name:
+ *                 nome:
  *                   type: string
  *                 email:
  *                   type: string
@@ -94,11 +94,11 @@ router.get('/user', verifyToken, UsuariosController.showOne);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               nome:
  *                 type: string
  *               email:
  *                 type: string
- *               password:
+ *               senha:
  *                 type: string
  *     responses:
  *       201:

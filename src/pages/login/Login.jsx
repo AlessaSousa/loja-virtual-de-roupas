@@ -36,7 +36,7 @@ function Login() {
         const token = localStorage.getItem('authToken');
 
         try {
-            const response = await api.post('/public/login', 
+            const response = await api.post('/routes/login', 
                 JSON.stringify({email, senha: senha}),
                 {
                     headers: {'Content-Type': 'application/json',  'Authorization': `Bearer ${token}`},

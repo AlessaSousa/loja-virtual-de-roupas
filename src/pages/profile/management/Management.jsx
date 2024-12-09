@@ -48,7 +48,7 @@ const Management = () => {
         };
         try {
             // const payload = { ...formData, fotos: formData.fotos.map(file => file.name) };
-            const response = await api.post('/private/item', formData, config);
+            const response = await api.post('/routes/item', formData, config);
             alert("Produto adicionado com sucesso!");
             console.log("Response:", response.data);
         } catch (error) {
