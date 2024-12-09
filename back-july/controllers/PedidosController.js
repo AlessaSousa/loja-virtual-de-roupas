@@ -5,8 +5,8 @@ module.exports = class PedidosController {
     
     static async criarPedido(req, res) {
         try {
-          const { quantidade, doacao } = req.body;
-          const pedido = await pedidos.create({ quantidade, doacao });
+          const { itens, quantidade, doacao, userId, carrinhoId } = req.body;
+          const pedido = await Pedidos.create({itens, quantidade, doacao, userId, carrinhoId });
           res.status(201).json(pedido);
         } catch (error) {
           res.status(500).json({ error: error.message });

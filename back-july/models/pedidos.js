@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'não',
     },
-    userId : DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     carrinhoId: DataTypes.INTEGER,
     statusPagamento: {
       type: DataTypes.ENUM('Pendente', 'Aprovado', 'Recusado'),

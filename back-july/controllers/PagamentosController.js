@@ -1,5 +1,6 @@
 const { Pagamentos } = require('../models');
-const pedidos = require('../models/pedidos');
+const {sequelize} = require('../models');
+const { Pedidos } = require('../models/');
 require('dotenv').config()
 
 module.exports = class PagamentosController {
@@ -11,7 +12,7 @@ module.exports = class PagamentosController {
           const userId = req.user.id
       
           // Verificar se o pedido existe e pertence ao usuário
-          const pedido = await pedidos.findOne({ where: { id: pedidoId, userId } });
+          const pedido = await Pedidos.findOne({ where: { id: pedidoId, userId } });
           if (!pedido) {
             return res.status(404).json({ error: 'Pedido não encontrado.' });
           }
