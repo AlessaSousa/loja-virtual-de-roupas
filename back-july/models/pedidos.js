@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Pedidos.hasMany(models.Carrinho, { foreignKey: 'pedidoId', onDelete: 'CASCADE' });
+      Pedidos.belongsTo(models.Carrinho, { foreignKey: 'carrinhoId', onDelete: 'CASCADE' });
       Pedidos.belongsTo(models.Usuarios, { foreignKey: 'userId', onDelete: 'CASCADE' });
       Pedidos.hasOne(models.Pagamentos, { foreignKey: 'pedidoId', onDelete: 'SET NULL' });
     }
@@ -26,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'não',
     },
+    userId : DataTypes.INTEGER,
+    carrinhoId: DataTypes.INTEGER,
     statusPagamento: {
       type: DataTypes.ENUM('Pendente', 'Aprovado', 'Recusado'),
       allowNull: false,

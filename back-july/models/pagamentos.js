@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'Pendente'
     },
-    metodo: DataTypes.STRING
+    metodo: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    pedidoId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Pagamentos',

@@ -14,7 +14,7 @@ module.exports = {
         quantidade: 1,
         doacao: 'não',
         userId: 2, 
-        statusPagamento: 'Pendente',
+        statusPagamento: 'Aprovado',
         statusEntrega: 'Em rota de entrega',
         createdAt: new Date(),
         updatedAt: new Date(),
