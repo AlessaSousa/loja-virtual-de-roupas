@@ -91,3 +91,9 @@ h2 {
     display: flex;
     resize: none;
 }
+
+.input-number-disabled {
+    background: #888888; 
+    color: #888888; 
+    cursor: not-allowed; 
+}

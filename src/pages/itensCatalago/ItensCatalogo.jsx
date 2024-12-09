@@ -35,6 +35,7 @@ function ItensCatalogo({ selectedCategory }) {
     { id: 11, img: TopEsportivo, title: "Conjunto Esportivo", value: 139.90, category: "Esporte" },
     { id: 12, img: JaquetaCouro, title: "Jaqueta de couro", value: 129.90, category: "Feminino" },
   ];
+   
 
   // Filtra os itens com base na categoria selecionada
   const filteredRoupas = selectedCategory ? roupas.filter(item => item.category === selectedCategory) : roupas;

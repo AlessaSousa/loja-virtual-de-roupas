@@ -32,7 +32,7 @@ function Register() {
             senha,
         };
 
-    api.post('/public/signin', payload) 
+    api.post('/routes/signin', payload) 
     .then(response => {
         alert("Dados enviado com sucesso!")
         console.log(response.data);

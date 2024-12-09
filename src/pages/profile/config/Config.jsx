@@ -1,12 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import {Link, useNavigate } from "react-router-dom";
 import "./Config.css";
-
 const Config = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  
-  const goToPersonalInfo = () => navigate("/profile/infPessoais");
+
+  const goToPersonalInfo = () => navigate("/profile/informacoes-pessoais");
   const goToOrders = () => navigate("/profile/seus-pedidos");
   const goToProducts = () => navigate("/cibfi/anuncios/Anuncios.jsx");
 
@@ -18,10 +17,17 @@ const Config = () => {
           <p>Informações Pessoais</p>
           <span className="arrow">{" >"}</span>
         </div>
-        <div className="config-item" onClick={goToOrders}>
+        {/* <div className="config-item" onClick={goToOrders}>
           <p>Seus Pedidos</p>
           <span className="arrow">{" >"}</span>
-        </div>
+        </div> */}
+
+        <Link to='/pedidos'>
+          <div className="config-item">
+            <p>Seus Pedidos</p>
+            <span className="arrow">{" >"}</span>
+          </div>
+        </Link>
         <div className="config-item" onClick={goToProducts}>
           <p>Produtos Anunciados</p>
           <span className="arrow">{" >"}</span>

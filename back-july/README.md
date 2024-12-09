@@ -21,3 +21,7 @@ Teste as rotas com o Insomnia ou com o navegador.
 
 Feito estas instruções, o app estará pronto para rodar usando o comando npm start.
 
+
+Para visualizar os endpoints no Swagger copie e cole esse link na url do seu navegador
+http://localhost:3001/api-trendix/#/
+

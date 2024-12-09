@@ -12,6 +12,7 @@ import { UserProvider } from "./context/userContext";
 import { CarrinhoProvider } from "./context/carrinhoContext";
 import Management from "./pages/profile/management/Management";
 import InfPessoais from "./pages/profile/config/informacoesPessoais/InfPessoais";
+import Pedidos from "./pages/profile/config/pedidos/Pedidos";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ const PathRouter = () => {
             <Route path="/pagamentos" element={<Pagamentos />} />
             <Route path="/profile/infPessoais" element={<InfPessoais />} />
             <Route path='/management' element={<Management/>} />
+            <Route path='/pedidos' element={<Pedidos/>} />
           </Routes>
         </UserProvider>
       </BrowserRouter>
