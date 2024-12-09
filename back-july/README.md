@@ -13,9 +13,8 @@ PORT = 3001
 JWT_SECRET = rlAK6krb2f6v16KKKEhJKhfohwg58wvb
 
 Não esqueça de criá-lo na raíz do diretório back-july.
-Após, rode as migrações e popule o banco de dados. Use npx sequelize-cli db:migrate para fazer as migrações das tabelas ao banco
-Depois disso, use o comando npx sequelize-cli db:seed:all para popular o banco de dados e os dados aparecerem nas rotas criadas
-[/usuarios, /produtos, /pedidos]
+Após, rode o comando sequelize db:create para criar o schema e sequelize db:migrate para criar as tabelas
+Depois disso, use o comando sequelize db:seed:all para popular o banco de dados e os dados aparecerem nas rotas criadas
 
 Teste as rotas com o Insomnia ou com o navegador.
 

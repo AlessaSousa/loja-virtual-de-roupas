@@ -1,17 +1,25 @@
 const express = require('express');
+const PedidosController = require('../controllers/PedidosController');
 const ProdutosController = require('../controllers/ProdutosController');
 const UsuariosController = require('../controllers/UsuariosController');
-const PedidosController = require('../controllers/PedidosController.js')
 const verifyToken = require("../middleware/auth");
-const { verify } = require('jsonwebtoken');
+const CarrinhoController = require('../controllers/CarrinhoController');
+const PagamentosController = require('../controllers/PagamentosController');
 const router = express.Router();
-
 
 /**
  * @swagger
  * tags:
  *   - name: Users
  *     description: Operações relacionadas a usuários
+ *   - name: Products
+ *     description: Operações relacionadas a produtos
+ *   - name: Orders
+ *     description: Operações relacionadas a pedidos
+ *   - name: Cart
+ *     description: Operações relacionadas ao carrinho
+ *   - name: Payment
+ *     description: Operações relacionadas a pagamentos
  */
 
 /**
@@ -40,46 +48,6 @@ const router = express.Router();
  *                     type: string
  */
 router.get('/users', verifyToken, UsuariosController.showAll);
-
-/**
- * @swagger
- * /user:
- *   get:
- *     tags: [Users]
- *     summary: Retorna um usuário pelo ID
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: query
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *           description: ID do usuário
- *     responses:
- *       200:
- *         description: Detalhes de um usuário
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: integer
- *                 nome:
- *                   type: string
- *                 email:
- *                   type: string
- *       404:
- *         description: Usuário não encontrado
- */
-router.get('/user', verifyToken, UsuariosController.showOne);
-/**
- * @swagger
- * tags:
- *   - name: Users
- *     description: Operações relacionadas a usuários
- */
 
 /**
  * @swagger
@@ -135,10 +103,66 @@ router.post('/login', UsuariosController.login);
 
 /**
  * @swagger
- * tags:
- *   - name: Products
- *     description: Operações relacionadas a produtos
+ * /user:
+ *   get:
+ *     tags: [Users]
+ *     summary: Retorna um usuário pelo ID
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Detalhes de um usuário
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nome:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *       404:
+ *         description: Usuário não encontrado
  */
+router.get('/user', verifyToken, UsuariosController.showOne);
+
+/**
+ * @swagger
+ * /updateUser:
+ *   put:
+ *     tags: [Users]
+ *     summary: Atualiza as informações de um usuário
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               senha:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ */
+router.put('/updateUser', verifyToken, UsuariosController.update);
 
 /**
  * @swagger
@@ -168,7 +192,7 @@ router.post('/login', UsuariosController.login);
  *                   descricao:
  *                     type: string
  */
-router.get('/items', ProdutosController.produto);
+router.get('/items', ProdutosController.produtos);
 
 /**
  * @swagger
@@ -185,15 +209,15 @@ router.get('/items', ProdutosController.produto);
  *           schema:
  *             type: object
  *             properties:
- *                   nome:
- *                     type: string
- *                   preco:
- *                     type: number
- *                     format: float
- *                   categoria:
- *                     type: string
- *                   descricao:
- *                     type: string
+ *               nome:
+ *                 type: string
+ *               preco:
+ *                 type: number
+ *                 format: float
+ *               categoria:
+ *                 type: string
+ *               descricao:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Produto registrado com sucesso
@@ -201,6 +225,31 @@ router.get('/items', ProdutosController.produto);
  *         description: Dados inválidos
  */
 router.post('/item', verifyToken, ProdutosController.cadastrarProduto);
+
+/**
+ * @swagger
+ * /deleteItem:
+ *   delete:
+ *     tags: [Products]
+ *     summary: Deleta um produto registrado
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Produto deletado com sucesso
+ *       404:
+ *         description: Produto não encontrado
+ */
+router.delete('/deleteItem', verifyToken, ProdutosController.deletarProduto);
 
 /**
  * @swagger
@@ -225,16 +274,10 @@ router.post('/item', verifyToken, ProdutosController.cadastrarProduto);
  *                   quantidade:
  *                     type: integer
  *                   doacao:
- *                     type: boolean
+ *                     type: string
+ *                     enum: [sim, não]
  */
 router.get("/orders", verifyToken, PedidosController.pedidos);
-
-/**
- * @swagger
- * tags:
- *   - name: Orders
- *     description: Operações relacionadas a pedidos
- */
 
 /**
  * @swagger
@@ -251,10 +294,11 @@ router.get("/orders", verifyToken, PedidosController.pedidos);
  *           schema:
  *             type: object
  *             properties:
- *                   quantidade:
- *                     type: integer
- *                   doacao:
- *                     type: boolean
+ *               quantidade:
+ *                 type: integer
+ *               doacao:
+ *                 type: string
+ *                 enum: [sim, não]
  *     responses:
  *       201:
  *         description: Pedido criado com sucesso
@@ -262,6 +306,112 @@ router.get("/orders", verifyToken, PedidosController.pedidos);
  *         description: Dados inválidos
  */
 router.post('/order', verifyToken, PedidosController.criarPedido);
+
+/**
+ * @swagger
+ * /payment:
+ *   post:
+ *     tags: [Payment]
+ *     summary: Realiza o pagamento de um pedido
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               pedidoId:
+ *                 type: integer
+ *               metodoPagamento:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Pagamento realizado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ */
+router.post('/payment', verifyToken, PagamentosController.pagamento);
+
+/**
+ * @swagger
+ * /cart:
+ *   get:
+ *     tags: [Cart]
+ *     summary: Retorna itens do carrinho do usuário
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Itens do carrinho
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   produtoId:
+ *                     type: integer
+ *                   quantidade:
+ *                     type: integer
+ */
+router.get('/cart', verifyToken, CarrinhoController.getCarrinho);
+
+/**
+ * @swagger
+ * /addToCart:
+ *   post:
+ *     tags: [Cart]
+ *     summary: Adiciona um item ao carrinho
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               produtoId:
+ *                 type: integer
+ *               quantidade:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Item adicionado ao carrinho
+ *       400:
+ *         description: Dados inválidos
+ */
+router.post('/addToCart', verifyToken, CarrinhoController.adicionarAoCarrinho);
+
+/**
+ * @swagger
+ * /removeFromCart:
+ *   delete:
+ *     tags: [Cart]
+ *     summary: Remove um item do carrinho
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               produtoId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Item removido do carrinho
+ *       404:
+ *         description: Produto não encontrado no carrinho
+ */
+router.delete('/removeFromCart', verifyToken, CarrinhoController.removerDoCarrinho);
 
 // No caso de rota não encontrada, retornar erro 404
 router.use((req, res, next) => {
